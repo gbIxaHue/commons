@@ -4,9 +4,9 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import ru.dev.gbixahue.library.commons.R
-import ru.dev.gbixahue.library.android.extensions.components.showToast
+import ru.dev.gbixahue.library.R
 import ru.dev.gbixahue.library.android.log.Log
+import ru.dev.gbixahue.library.extensions.components.showToast
 
 /**
  * Created by Anton Zhilenkov on 06.03.2018.

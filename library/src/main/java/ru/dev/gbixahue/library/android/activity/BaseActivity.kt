@@ -3,10 +3,10 @@ package ru.dev.gbixahue.library.android.activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import ru.dev.gbixahue.library.analysis.ATrack
+import ru.dev.gbixahue.library.analysis.event.TrackerEvent
 import ru.dev.gbixahue.library.android.BaseApplication
 import ru.dev.gbixahue.library.android.locale.LocaleLanguageSwitcher
-import ru.dev.gbixahue.library.tracker.ATrack
-import ru.dev.gbixahue.library.tracker.event.TrackerEvent
 
 /**
  * Created by Anton Zhilenkov on 06.03.2018.

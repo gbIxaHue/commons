@@ -3,9 +3,9 @@ package ru.dev.gbixahue.library.android.recycler.adapters
 import android.view.View
 import android.view.ViewGroup
 import ru.dev.gbixahue.library.android.LayoutHolder
-import ru.dev.gbixahue.library.android.extensions.views.inflate
 import ru.dev.gbixahue.library.android.recycler.OnItemClickListener
 import ru.dev.gbixahue.library.android.recycler.view_holders.ResponsibleViewHolder
+import ru.dev.gbixahue.library.extensions.views.inflate
 
 /**
  * Created by Anton Zhilenkov on 06.03.2018.

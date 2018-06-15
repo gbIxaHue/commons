@@ -44,7 +44,7 @@ abstract class BaseApplication: Application() {
 
   private fun initLogger() {
     Log.d("TAG", "initLogger")
-    if (isDebug()) ru.dev.gbixahue.commons.android.log.Log.setLogger(DefaultLogger(getLogName()))
+    if (isDebug()) ru.dev.gbixahue.library.android.log.Log.setLogger(DefaultLogger(getLogName()))
   }
 
   abstract fun isDebug(): Boolean

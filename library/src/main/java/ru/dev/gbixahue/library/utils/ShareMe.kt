@@ -2,8 +2,8 @@ package ru.dev.gbixahue.library.utils
 
 import android.content.Context
 import android.content.Intent
-import ru.dev.gbixahue.library.commons.R
-import ru.dev.gbixahue.library.android.extensions.components.stringFrom
+import ru.dev.gbixahue.library.R
+import ru.dev.gbixahue.library.extensions.components.stringFrom
 
 /**
  * Created by Anton Zhilenkov on 06.03.2018.

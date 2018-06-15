@@ -5,9 +5,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import ru.dev.gbixahue.library.android.activity.LifeCycleListener
-import ru.dev.gbixahue.library.android.extensions.components.isLandscape
-import ru.dev.gbixahue.library.android.extensions.components.isTablet
-import ru.dev.gbixahue.library.android.extensions.views.enableLayoutAnimation
+import ru.dev.gbixahue.library.extensions.views.enableLayoutAnimation
 
 /**
  * Created by Anton Zhilenkov on 06.03.2018.
