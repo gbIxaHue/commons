@@ -8,15 +8,18 @@ import ru.dev.gbixahue.library.extensions.components.stringFrom
 /**
  * Created by Anton Zhilenkov on 06.03.2018.
  */
-class ShareMe(private val message: String) {
+class ShareMe() {
 
-  private val linkToGoogleApp = "https://play.google.com/store/apps/details?id="
+  companion object {
 
-  fun share(context: Context) {
-    val sharingIntent = Intent(Intent.ACTION_SEND)
-    sharingIntent.type = "text/plain"
-    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "\n\n")
-    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, message + " $linkToGoogleApp" + context.applicationInfo.packageName)
-    context.startActivity(Intent.createChooser(sharingIntent, context.stringFrom(R.string.share)))
+    const val linkToGoogleApp = "https://play.google.com/store/apps/details?id="
+
+    fun toFriends(context: Context, message: String) {
+      val sharingIntent = Intent(Intent.ACTION_SEND)
+      sharingIntent.type = "text/plain"
+      sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "\n\n")
+      sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, message + " $linkToGoogleApp" + context.applicationInfo.packageName)
+      context.startActivity(Intent.createChooser(sharingIntent, context.stringFrom(R.string.share)))
+    }
   }
 }

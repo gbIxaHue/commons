@@ -71,6 +71,10 @@ fun Context.openWebView(url: String) {
 	}
 }
 
+fun Context.isTablet(): Boolean = (resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) >=
+		Configuration.SCREENLAYOUT_SIZE_LARGE
+
+fun Context.isLandscape(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 fun Context.isPortrait(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 fun Context.getOrientation(): Int = resources.configuration.orientation
 fun isPortrait(orientation: Int): Boolean = orientation == Configuration.ORIENTATION_PORTRAIT
