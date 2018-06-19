@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!--<declare-styleable name="InputWidget">-->
+	<!--<attr name="inputText" format="reference"/>-->
+	<!--<attr name="inputStyle" format="reference|integer" />-->
+	<!--<attr name="hintText" format="reference|integer" />-->
+	<!--<attr name="hintStyle" format="reference"/>-->
+	<!--<attr name="bottomLabelText" format="reference"/>-->
+	<!--<attr name="bottomLabelStyle" format="reference|integer" />-->
+	<!--</declare-styleable>-->
+
+	<declare-styleable name="InputWidget">
+		<attr name="android:inputType" format="reference" />
+		<attr name="iwStyle" format="reference" />
+		<attr name="errorColor" format="reference" />
+		<attr name="highLightColor" format="reference" />
+		<attr name="inputText" format="reference" />
+		<attr name="inputTextSize" format="reference" />
+		<attr name="inputTextColor" format="reference" />
+		<attr name="hintText" format="reference" />
+		<attr name="hintTextSize" format="reference" />
+		<attr name="hintTextColor" format="reference" />
+		<attr name="labelText" format="reference" />
+		<attr name="labelTextSize" format="reference" />
+		<attr name="labelTextColor" format="reference" />
+
+	</declare-styleable>
+
+</resources>

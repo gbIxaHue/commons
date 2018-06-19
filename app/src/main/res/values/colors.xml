@@ -3,4 +3,11 @@
   <color name="colorPrimary">#3F51B5</color>
   <color name="colorPrimaryDark">#303F9F</color>
   <color name="colorAccent">#FF4081</color>
+
+  <!--Colors-->
+
+  <color name="sdk_input">#333333</color>
+  <color name="sdk_input_highlight">#64b246</color>
+  <color name="sdk_input_hint">#A0333333</color>
+  <color name="sdk_input_error">#d5162f</color>
 </resources>

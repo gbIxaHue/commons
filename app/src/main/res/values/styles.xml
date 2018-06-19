@@ -17,4 +17,17 @@
 
 	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+	<style name="TestStyle">
+		<item name="android:inputType">text</item>
+		<item name="highLightColor">@color/sdk_input_highlight</item>
+		<item name="errorColor">@color/sdk_input_error</item>
+		<item name="inputTextSize">@dimen/input_text_size</item>
+		<item name="inputTextColor">@color/sdk_input</item>
+		<item name="hintTextSize">@dimen/input_text_hint_size</item>
+		<item name="hintTextColor">@color/sdk_input_highlight</item>
+		<item name="labelTextSize">@dimen/input_text_label_size</item>
+		<item name="labelTextColor">@color/sdk_input_hint</item>
+	</style>
+
 </resources>

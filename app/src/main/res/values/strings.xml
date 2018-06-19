@@ -1,4 +1,9 @@
 <resources>
 	<string name="app_name">commons</string>
 	<string name="title_activity_main">MainActivity</string>
+
+	<string name="inputText">Is inputed text</string>
+	<string name="hintText">Hello, this is floating hint </string>
+	<string name="labelText">Youps sdlkfngskdnflkgnsldkds fg sdif gosidf gosid fgosid fpoig sdoif gopisid fgpoiis dfpog posidi fg)</string>
+
 </resources>

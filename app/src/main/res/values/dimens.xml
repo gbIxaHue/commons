@@ -1,3 +1,7 @@
 <resources>
 	<dimen name="fab_margin">16dp</dimen>
+
+	<dimen name="input_text_size">16sp</dimen>
+	<dimen name="input_text_hint_size">12sp</dimen>
+	<dimen name="input_text_label_size">12sp</dimen>
 </resources>

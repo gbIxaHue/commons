@@ -8,4 +8,57 @@
 	tools:context="ru.dev.gbixahue.library.commons.MainActivity"
 	tools:showIn="@layout/activity_main">
 
+	<ru.dev.gbixahue.library.commons.input_widget.InputWidget
+		android:id="@+id/iw1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/sdk_margin"
+		android:padding="1dp"
+		app:iwStyle="@style/TestStyle"
+		app:hintText="@string/hintText"
+		app:labelText="@string/labelText"/>
+
+
+	<ru.dev.gbixahue.library.commons.input_widget.InputWidget
+		android:id="@+id/iw2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/sdk_margin"
+		android:layout_marginTop="8dp"
+		android:padding="1dp"
+		app:hintText="@string/hintText"
+		app:inputText="@string/inputText"
+		app:iwStyle="@style/TestStyle"
+		app:labelText="@string/labelText"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/iw1" />
+
+
+	<ru.dev.gbixahue.library.commons.input_widget.InputWidget
+		android:id="@+id/iw3"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/sdk_margin"
+		android:layout_marginTop="8dp"
+		android:padding="1dp"
+		app:hintText="@string/hintText"
+		app:inputText="@string/inputText"
+		app:iwStyle="@style/TestStyle"
+		app:labelText="@string/labelText"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/iw2" />
+
+	<Button
+		android:id="@+id/button2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:text="Button"
+		android:onClick="onClick"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/iw3" />
+
 </android.support.constraint.ConstraintLayout>
