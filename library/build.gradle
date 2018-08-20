@@ -49,8 +49,8 @@ dependencies {
   api "com.yandex.android:mobmetricapushlib:1.1.0"
 
   // Facebook
-  api "com.facebook.android:facebook-android-sdk:4.33.0"
-  api "com.facebook.stetho:stetho:1.3.1"
+  api "com.facebook.android:facebook-android-sdk:4.35.0"
+  api "com.facebook.stetho:stetho:1.5.0"
 
   // Fabric
   api("com.crashlytics.sdk.android:crashlytics:2.9.3") {
