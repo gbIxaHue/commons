@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion 27
+  compileSdkVersion 28
 
   defaultConfig {
     applicationId "ru.dev.gbixahue.library.commons"
     minSdkVersion 17
-    targetSdkVersion 21
+    targetSdkVersion 28
     versionCode 1
     versionName "0.0.1"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

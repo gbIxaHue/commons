@@ -1,15 +1,46 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+ext.versions = [
+    minSdk            : 17,
+    compileSdk        : 28,
+    targetSdk         : 28,
+
+    versionCode       : 1,
+    versionName       : '0.1.1',
+
+    buildTools        : '28.0.2',
+    support           : '27.1.1',
+    constraint        : '1.1.2',
+
+    dagger            : '2.11',
+
+    firebase_core     : '16.0.1',
+    firebase_messaging: '17.3.0',
+    firebase_ads      : '15.0.1',
+
+    mobmetricalib     : '3.0.0',
+    mobmetricapushlib : '1.1.0',
+
+    facebook          : '4.35.0',
+    stetho            : '1.5.0',
+
+    crashlytics       : '2.9.3',
+
+    rxjava            : '2.1.13',
+    rxandroid         : '2.0.2',
+    gson              : '2.8.5'
+]
+
 android {
-  compileSdkVersion 27
-  buildToolsVersion '26.0.3'
+  compileSdkVersion versions.compileSdk
+  buildToolsVersion versions.buildTools
 
   defaultConfig {
-    minSdkVersion 17
-    targetSdkVersion 27
-    versionCode 1
-    versionName "0.0.1"
+    minSdkVersion versions.minSdk
+    targetSdkVersion versions.targetSdk
+    versionCode versions.versionCode
+    versionName versions.versionName
 
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
@@ -24,47 +55,44 @@ android {
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
   testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'com.android.support.test:runner:1.0.2'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+//  androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
   api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-  api 'com.android.support:appcompat-v7:27.1.1'
-  api 'com.android.support:design:27.1.1'
-
-  api "com.android.support:design:27.1.1"
-  api "com.android.support:support-v4:27.1.1"
-  api "com.android.support:appcompat-v7:27.1.1"
-  api "com.android.support:recyclerview-v7:27.1.1"
-  api "com.android.support.constraint:constraint-layout:1.1.2"
+  api "com.android.support:design:$versions.support"
+  api "com.android.support.constraint:constraint-layout:$versions.constraint"
+  api "com.android.support:support-v4:$versions.support"
+  api "com.android.support:appcompat-v7:$versions.support"
+  api "com.android.support:recyclerview-v7:$versions.support"
 
 
   // Firebase
-  implementation "com.google.firebase:firebase-core:16.0.1"
-  implementation "com.google.firebase:firebase-messaging:17.0.0"
-  implementation "com.google.firebase:firebase-ads:15.0.1"
+  implementation "com.google.firebase:firebase-core:$versions.firebase_core"
+  implementation "com.google.firebase:firebase-messaging:$versions.firebase_messaging"
+  implementation "com.google.firebase:firebase-ads:$versions.firebase_ads"
 
   // Yandex Metrica
-  api "com.yandex.android:mobmetricalib:3.0.0"
-  api "com.yandex.android:mobmetricapushlib:1.1.0"
+  api "com.yandex.android:mobmetricalib:$versions.mobmetricalib"
+  api "com.yandex.android:mobmetricapushlib:$versions.mobmetricapushlib"
 
   // Facebook
-  api "com.facebook.android:facebook-android-sdk:4.35.0"
-  api "com.facebook.stetho:stetho:1.5.0"
+  api "com.facebook.android:facebook-android-sdk:$versions.facebook"
+  api "com.facebook.stetho:stetho:$versions.stetho"
 
   // Dagger
-  api "com.google.dagger:dagger:2.11"
-  kapt "com.google.dagger:dagger-compiler:2.11"
+  api "com.google.dagger:dagger:$versions.dagger"
+  kapt "com.google.dagger:dagger-compiler:$versions.dagger"
 
   // Fabric
-  api("com.crashlytics.sdk.android:crashlytics:2.9.3") {
+  api("com.crashlytics.sdk.android:crashlytics:$versions.crashlytics") {
     transitive = true
   }
 
   // RxJava
-  api "io.reactivex.rxjava2:rxjava:2.1.13"
-  api "io.reactivex.rxjava2:rxandroid:2.0.2"
+  api "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+  api "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
 
   // Other
-  api 'com.google.code.gson:gson:2.8.5'
+  api "com.google.code.gson:gson:$versions.gson"
 }
