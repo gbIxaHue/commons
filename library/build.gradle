@@ -6,7 +6,7 @@ android {
   buildToolsVersion '26.0.3'
 
   defaultConfig {
-    minSdkVersion 16
+    minSdkVersion 17
     targetSdkVersion 27
     versionCode 1
     versionName "0.0.1"
@@ -51,6 +51,10 @@ dependencies {
   // Facebook
   api "com.facebook.android:facebook-android-sdk:4.35.0"
   api "com.facebook.stetho:stetho:1.5.0"
+
+  // Dagger
+  api "com.google.dagger:dagger:2.11"
+  kapt "com.google.dagger:dagger-compiler:2.11"
 
   // Fabric
   api("com.crashlytics.sdk.android:crashlytics:2.9.3") {

@@ -15,9 +15,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import ru.dev.gbixahue.library.android.log.Log
 import ru.dev.gbixahue.library.commons.R
-import ru.dev.gbixahue.library.extensions.components.convertDpToPx
+import ru.dev.gbixahue.library.extensions.components.dpToPx
 import ru.dev.gbixahue.library.extensions.components.stringFrom
-import ru.dev.gbixahue.library.extensions.views.convertPxToDp
+import ru.dev.gbixahue.library.extensions.views.pxToDp
 import ru.dev.gbixahue.magicoflove.ShowAnimator
 
 
@@ -99,7 +99,7 @@ class InputWidget: LinearLayout {
 		val textColor = styleAttributes.getColor(R.styleable.InputWidget_inputTextColor, NOT_FOUND)
 		if (textColor != NOT_FOUND) mHintView.setTextColor(textColor)
 		val textSize = styleAttributes.getDimensionPixelSize(R.styleable.InputWidget_inputTextSize, NOT_FOUND).toFloat()
-		if (textColor != NOT_FOUND) mHintView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mHintView.convertPxToDp(textSize))
+		if (textColor != NOT_FOUND) mHintView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mHintView.pxToDp(textSize))
 
 		val padding = dpToPx(24)
 		mEditText.setPadding(padding, 0, padding, padding)
@@ -122,7 +122,7 @@ class InputWidget: LinearLayout {
 		val textColor = styleAttributes.getColor(R.styleable.InputWidget_hintTextColor, NOT_FOUND)
 		if (textColor != NOT_FOUND) mHintView.setTextColor(textColor)
 		val textSize = styleAttributes.getDimensionPixelSize(R.styleable.InputWidget_hintTextSize, NOT_FOUND).toFloat()
-		if (textColor != NOT_FOUND) mHintView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mHintView.convertPxToDp(textSize))
+		if (textColor != NOT_FOUND) mHintView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mHintView.pxToDp(textSize))
 
 		mHintAnimator.focusedColor = textColor
 		val padding = mEditText.paddingLeft / 2
@@ -141,10 +141,10 @@ class InputWidget: LinearLayout {
 		val textColor = styleAttributes.getColor(R.styleable.InputWidget_labelTextColor, NOT_FOUND)
 		if (textColor != NOT_FOUND) mLabelView.setTextColor(textColor)
 		val textSize = styleAttributes.getDimensionPixelSize(R.styleable.InputWidget_labelTextSize, NOT_FOUND).toFloat()
-		if (textColor != NOT_FOUND) mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLabelView.convertPxToDp(textSize))
+		if (textColor != NOT_FOUND) mLabelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLabelView.pxToDp(textSize))
 	}
 
-	private fun dpToPx(dp: Int): Int = context.convertDpToPx(dp.toFloat()).toInt()
+	private fun dpToPx(dp: Int): Int = context.dpToPx(dp.toFloat()).toInt()
 
 	private fun findStyle(typedArray: TypedArray): TypedArray? {
 		val styleId = typedArray.getResourceId(R.styleable.InputWidget_iwStyle, - 1)

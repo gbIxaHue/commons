@@ -1,5 +1,6 @@
 package ru.dev.gbixahue.library.extensions.views
 
+import android.animation.ValueAnimator
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -8,6 +9,7 @@ import android.text.Html
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
+import ru.dev.gbixahue.library.utils.InnerArbEvaluator
 
 /**
  * Created by Anton Zhilenkov on 12.09.17.
@@ -23,6 +25,13 @@ fun TextView.setTextFromHtml(htmlString: String) {
 
 fun TextView.setRightDrawable(drawable: Drawable?) {
 	setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+}
+
+fun TextView.animateColorChanges(to: Int, from: Int, duration: Long = 300) {
+	ValueAnimator.ofObject(InnerArbEvaluator(), from, to).apply {
+		setDuration(duration)
+		addUpdateListener { setTextColor(it.animatedValue as Int) }
+	}.start()
 }
 
 fun EditText.text() = text.toString().trim()
@@ -48,11 +57,11 @@ fun EditText.requestFocusAndMoveCursor(moveCursorToTheEndOfText: Boolean = true)
 }
 
 fun EditText.setOnImeActionListener(action: Int, handler: () -> Unit) {
-	this.setOnEditorActionListener({ view, actionId, event ->
+	this.setOnEditorActionListener { view, actionId, event ->
 		if (actionId == action) {
 			handler.invoke()
 			return@setOnEditorActionListener true
 		}
 		return@setOnEditorActionListener false
-	})
+	}
 }

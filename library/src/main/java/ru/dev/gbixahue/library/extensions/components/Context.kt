@@ -37,8 +37,8 @@ fun Context.showToast(message: String) {
 	Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
-fun Context.convertPxToDp(px: Float): Float = px / (resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-fun Context.convertDpToPx(dp: Float): Float = dp * (resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
+fun Context.dpToPx(dp: Float): Float = dp * resources.displayMetrics.density
+fun Context.pxToDp(px: Float): Float = Math.round(px / resources.displayMetrics.density).toFloat()
 
 fun Context.displayDensity(): Float {
 	val display = (getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
