@@ -9,32 +9,32 @@ import ru.dev.gbixahue.library.tools.analysis.event.AnalysisEvent
  */
 class FirebaseAnalysis(application: Application, params: MutableMap<AnalysisKey, Any> = mutableMapOf()): BaseAnalysisSystem(application, params) {
 
-  companion object {
-    val ID = FirebaseAnalysis::class.java.simpleName
-  }
+	companion object {
+		val ID = FirebaseAnalysis::class.java.simpleName
+	}
 
-  private var tracker: FirebaseAnalytics? = null
+	private var tracker: FirebaseAnalytics? = null
 
-  override fun initSystem(application: Application) {
-    tracker = FirebaseAnalytics.getInstance(application)
-  }
+	override fun initSystem(application: Application) {
+		tracker = FirebaseAnalytics.getInstance(application)
+	}
 
-  override fun lowPriority(event: AnalysisEvent) {
-    sendEvent(event)
-  }
+	override fun lowPriority(event: AnalysisEvent) {
+		sendEvent(event)
+	}
 
-  override fun highPriority(event: AnalysisEvent) {}
+	override fun highPriority(event: AnalysisEvent) {}
 
-  private fun sendEvent(event: AnalysisEvent) {
-    val catAction = getCategoryAction(event)
-    handleEvent(catAction.plus(getLogValues(event)), { tracker?.logEvent(catAction, toBundle(event.values())) })
-  }
+	private fun sendEvent(event: AnalysisEvent) {
+		val catAction = getCategoryAction(event)
+		handleEvent(catAction.plus(getLogValues(event)), { tracker?.logEvent(catAction, toBundle(event.values())) })
+	}
 
-  override fun getCategoryAction(event: AnalysisEvent): String {
-    return event.getEventName { category, action ->
-      if (category.isEmpty()) action
-      else if (action.isEmpty()) category
-      else category + " " + action
-    }
-  }
+	override fun getCategoryAction(event: AnalysisEvent): String {
+		return event.getEventName { category, action ->
+			if (category.isEmpty()) action
+			else if (action.isEmpty()) category
+			else category + " " + action
+		}
+	}
 }

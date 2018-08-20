@@ -10,11 +10,11 @@ import java.util.*
  */
 
 inline fun <E> SparseArray<E>.forEach(action: (Int, E) -> Unit) {
-  val size = this.size()
-  for (i in 0..size - 1) {
-    if (size != this.size()) throw ConcurrentModificationException()
-    action(this.keyAt(i), this.valueAt(i))
-  }
+	val size = this.size()
+	for (i in 0..size - 1) {
+		if (size != this.size()) throw ConcurrentModificationException()
+		action(this.keyAt(i), this.valueAt(i))
+	}
 }
 
 /**
@@ -23,11 +23,11 @@ inline fun <E> SparseArray<E>.forEach(action: (Int, E) -> Unit) {
  *  @throws [ConcurrentModificationException] if modified while iterating
  */
 inline fun SparseBooleanArray.forEach(action: (Int, Boolean) -> Unit) {
-  val size = this.size()
-  for (i in 0..size - 1) {
-    if (size != this.size()) throw ConcurrentModificationException()
-    action(this.keyAt(i), this.valueAt(i))
-  }
+	val size = this.size()
+	for (i in 0..size - 1) {
+		if (size != this.size()) throw ConcurrentModificationException()
+		action(this.keyAt(i), this.valueAt(i))
+	}
 }
 
 /**
@@ -36,9 +36,9 @@ inline fun SparseBooleanArray.forEach(action: (Int, Boolean) -> Unit) {
  *  @throws [ConcurrentModificationException] if modified while iterating
  */
 inline fun SparseIntArray.forEach(action: (Int, Int) -> Unit) {
-  val size = this.size()
-  for (i in 0..size - 1) {
-    if (size != this.size()) throw ConcurrentModificationException()
-    action(this.keyAt(i), this.valueAt(i))
-  }
+	val size = this.size()
+	for (i in 0..size - 1) {
+		if (size != this.size()) throw ConcurrentModificationException()
+		action(this.keyAt(i), this.valueAt(i))
+	}
 }

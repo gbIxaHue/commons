@@ -26,10 +26,10 @@ import ru.dev.gbixahue.library.extensions.views.enableLayoutAnimation
 
 class BottomAdsView(context: Context, adId: Int): LifeCycleListener {
 
-  var parentBottomPadding: Int = 0
+	var parentBottomPadding: Int = 0
 
-  private var onAdClicked: (() -> Unit)? = null
-  private var onAdLoaded: (() -> Unit)? = null
+	private var onAdClicked: (() -> Unit)? = null
+	private var onAdLoaded: (() -> Unit)? = null
 
 //  private var adView: AdView = AdView(context).apply {
 //    adUnitId = context.resources.getString(adId)
@@ -44,8 +44,8 @@ class BottomAdsView(context: Context, adId: Int): LifeCycleListener {
 //      return adView.measuredHeight
 //    }
 
-  init {
-    if (context.isLandscape()) setSize(if (context.isTablet()) 2 else 6) else setSize(6)
+	init {
+		if (context.isLandscape()) setSize(if (context.isTablet()) 2 else 6) else setSize(6)
 //    adView.adListener = object: AdListener() {
 //
 //      override fun onAdLeftApplication() {
@@ -56,83 +56,83 @@ class BottomAdsView(context: Context, adId: Int): LifeCycleListener {
 //        onAdLoaded?.invoke()
 //      }
 //    }
-  }
+	}
 
-  private fun setSize(iSize: Int) {
-    when (iSize) {
+	private fun setSize(iSize: Int) {
+		when (iSize) {
 //      1 -> adView.adSize = AdSize.BANNER
 //      2 -> adView.adSize = AdSize.FULL_BANNER
 //      3 -> adView.adSize = AdSize.LEADERBOARD
 //      4 -> adView.adSize = AdSize.LARGE_BANNER
 //      5 -> adView.adSize = AdSize.MEDIUM_RECTANGLE
 //      6 -> adView.adSize = AdSize.SMART_BANNER
-    }
-  }
+		}
+	}
 
-  fun setOnAdClickListener(callback: () -> Unit) {
-    this.onAdClicked = callback
-  }
+	fun setOnAdClickListener(callback: () -> Unit) {
+		this.onAdClicked = callback
+	}
 
-  fun setOnAdLoadListener(callback: () -> Unit) {
-    this.onAdLoaded = callback
-  }
+	fun setOnAdLoadListener(callback: () -> Unit) {
+		this.onAdLoaded = callback
+	}
 
-  fun setLayoutParams(params: ViewGroup.LayoutParams) {
+	fun setLayoutParams(params: ViewGroup.LayoutParams) {
 //    adView.layoutParams = params
-  }
+	}
 
-  fun load() {
+	fun load() {
 //    adView.loadAd(AdRequest.Builder().build())
-  }
+	}
 
-  fun destroy() {
+	fun destroy() {
 //    adView.destroy()
-  }
+	}
 
-  override fun activityOnPause() {
+	override fun activityOnPause() {
 //    adView.pause()
-  }
+	}
 
-  override fun activityResumed() {
+	override fun activityResumed() {
 //    adView.resume()
-  }
+	}
 
-  override fun activityOnDestroy() {
+	override fun activityOnDestroy() {
 //    adView.destroy()
-  }
+	}
 
-  companion object {
-    fun inject(parentView: FrameLayout, cuttingView: ViewGroup, adId: Int): BottomAdsView {
-      cuttingView.enableLayoutAnimation()
-      val banner = BottomAdsView(parentView.context, adId)
-      banner.load()
-      banner.setOnAdLoadListener {
-        //        if (parentView.findViewById<AdView>(banner.id) != null) return@setOnAdLoadListener
+	companion object {
+		fun inject(parentView: FrameLayout, cuttingView: ViewGroup, adId: Int): BottomAdsView {
+			cuttingView.enableLayoutAnimation()
+			val banner = BottomAdsView(parentView.context, adId)
+			banner.load()
+			banner.setOnAdLoadListener {
+				//        if (parentView.findViewById<AdView>(banner.id) != null) return@setOnAdLoadListener
 
-        cutParentView(banner, cuttingView)
-        val bannerParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        bannerParams.gravity = Gravity.BOTTOM
-        banner.setLayoutParams(bannerParams)
+				cutParentView(banner, cuttingView)
+				val bannerParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+				bannerParams.gravity = Gravity.BOTTOM
+				banner.setLayoutParams(bannerParams)
 //        parentView.addView(banner.adView)
-      }
-      return banner
-    }
+			}
+			return banner
+		}
 
-    fun cutParentView(banner: BottomAdsView, cuttingView: ViewGroup) {
-      val context = cuttingView.context
-      if (context.isTablet() && context.isLandscape()) return
-      cuttingView.apply {
-        banner.parentBottomPadding = paddingBottom
+		fun cutParentView(banner: BottomAdsView, cuttingView: ViewGroup) {
+			val context = cuttingView.context
+			if (context.isTablet() && context.isLandscape()) return
+			cuttingView.apply {
+				banner.parentBottomPadding = paddingBottom
 //        setPadding(paddingLeft, paddingTop, paddingRight, banner.measuredHeight)
-      }
-      cuttingView.requestLayout()
-    }
+			}
+			cuttingView.requestLayout()
+		}
 
-    fun restoreParentView(banner: BottomAdsView, restoringView: ViewGroup) {
-      val context = restoringView.context
-      if (context.isTablet() && context.isLandscape()) return
-      restoringView.apply { setPadding(paddingLeft, paddingTop, paddingRight, banner.parentBottomPadding) }
-      restoringView.requestLayout()
-    }
-  }
+		fun restoreParentView(banner: BottomAdsView, restoringView: ViewGroup) {
+			val context = restoringView.context
+			if (context.isTablet() && context.isLandscape()) return
+			restoringView.apply { setPadding(paddingLeft, paddingTop, paddingRight, banner.parentBottomPadding) }
+			restoringView.requestLayout()
+		}
+	}
 }

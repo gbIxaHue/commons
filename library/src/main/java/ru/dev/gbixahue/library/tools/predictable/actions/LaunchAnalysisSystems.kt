@@ -19,15 +19,15 @@ import ru.dev.gbixahue.library.tools.predictable.PredictableAction
  */
 class LaunchAnalysisSystems(private val appContext: BaseApplication): PredictableAction {
 
-  override fun performExpression(): Boolean = true
+	override fun performExpression(): Boolean = true
 
-  override fun performAction() {
-    appContext.prefRepo.save(Key.LAST_LAUNCH, System.currentTimeMillis())
-    if (BuildConfig.DEBUG) Stetho.initializeWithDefaults(appContext)
-    ATrack.addAnalysisSystem(AppMetricaAnalysis.ID, Configurator.getYandexMetrica(appContext))
-    ATrack.addAnalysisSystem(FacebookAnalysis.ID, Configurator.getFacebook(appContext))
-    ATrack.addAnalysisSystem(FirebaseAnalysis.ID, Configurator.getFirebase(appContext))
-    Fabric.with(appContext, Crashlytics(), Answers())
+	override fun performAction() {
+		appContext.prefRepo.save(Key.LAST_LAUNCH, System.currentTimeMillis())
+		if (BuildConfig.DEBUG) Stetho.initializeWithDefaults(appContext)
+		ATrack.addAnalysisSystem(AppMetricaAnalysis.ID, Configurator.getYandexMetrica(appContext))
+		ATrack.addAnalysisSystem(FacebookAnalysis.ID, Configurator.getFacebook(appContext))
+		ATrack.addAnalysisSystem(FirebaseAnalysis.ID, Configurator.getFirebase(appContext))
+		Fabric.with(appContext, Crashlytics(), Answers())
 //    MobileAds.initialize(appContext, appContext.getString(R.string.ads_app_id))
-  }
+	}
 }

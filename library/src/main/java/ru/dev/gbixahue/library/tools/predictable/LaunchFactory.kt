@@ -7,11 +7,11 @@ import ru.dev.gbixahue.library.hidden_singleton.handler.postWork
  */
 class LaunchFactory {
 
-  val mainThreadPredictable: MutableList<PredictableAction> = mutableListOf()
-  val workThreadPredictable: MutableList<PredictableAction> = mutableListOf()
+	val mainThreadPredictable: MutableList<PredictableAction> = mutableListOf()
+	val workThreadPredictable: MutableList<PredictableAction> = mutableListOf()
 
-  fun execute() {
-    mainThreadPredictable.forEach { if (it.performExpression()) it.performAction() }
+	fun execute() {
+		mainThreadPredictable.forEach { if (it.performExpression()) it.performAction() }
 		postWork({ workThreadPredictable.forEach { if (it.performExpression()) it.performAction() } })
-  }
+	}
 }

@@ -13,22 +13,22 @@ import ru.dev.gbixahue.library.tools.analysis.event.TrackerEvent
  */
 open class BaseActivity: AppCompatActivity() {
 
-  protected val tracker: ATrack = ATrack
-  protected lateinit var languageSwitcher: LocaleLanguageSwitcher
+	protected val tracker: ATrack = ATrack
+	protected lateinit var languageSwitcher: LocaleLanguageSwitcher
 
-  override fun attachBaseContext(base: Context) {
-    languageSwitcher = (base.applicationContext as BaseApplication).languageSwitcher
-    super.attachBaseContext(languageSwitcher.attachBaseContext(base))
-  }
+	override fun attachBaseContext(base: Context) {
+		languageSwitcher = (base.applicationContext as BaseApplication).languageSwitcher
+		super.attachBaseContext(languageSwitcher.attachBaseContext(base))
+	}
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    languageSwitcher = (applicationContext as BaseApplication).languageSwitcher
-    super.onCreate(savedInstanceState)
-    languageSwitcher.restoreUserChoice()
-    languageSwitcher.resetTitles(this)
-  }
+	override fun onCreate(savedInstanceState: Bundle?) {
+		languageSwitcher = (applicationContext as BaseApplication).languageSwitcher
+		super.onCreate(savedInstanceState)
+		languageSwitcher.restoreUserChoice()
+		languageSwitcher.resetTitles(this)
+	}
 
-  protected open fun sendOpenScreenEvent(screeName: String, values: MutableMap<String, String>) {
-    tracker.send(TrackerEvent("Screen", screeName).withValues(values))
-  }
+	protected open fun sendOpenScreenEvent(screeName: String, values: MutableMap<String, String>) {
+		tracker.send(TrackerEvent("Screen", screeName).withValues(values))
+	}
 }

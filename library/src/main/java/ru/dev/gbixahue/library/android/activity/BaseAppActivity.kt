@@ -8,41 +8,41 @@ import ru.dev.gbixahue.library.android.preference.PreferenceRepository
  */
 open class BaseAppActivity: BaseActivity(), LifeCycleActivity {
 
-  protected val prefRepo: PreferenceRepository = (applicationContext as BaseApplication).prefRepo
+	protected val prefRepo: PreferenceRepository = (applicationContext as BaseApplication).prefRepo
 
-  private val lifecycleListeners: MutableList<LifeCycleListener> = mutableListOf()
+	private val lifecycleListeners: MutableList<LifeCycleListener> = mutableListOf()
 
-  override fun addLifeCycleListener(listener: LifeCycleListener) {
-    lifecycleListeners.add(listener)
-  }
+	override fun addLifeCycleListener(listener: LifeCycleListener) {
+		lifecycleListeners.add(listener)
+	}
 
-  override fun removeLifeCycleListener(listener: LifeCycleListener) {
-    lifecycleListeners.remove(listener)
-  }
+	override fun removeLifeCycleListener(listener: LifeCycleListener) {
+		lifecycleListeners.remove(listener)
+	}
 
-  override fun onStart() {
-    super.onStart()
-    lifecycleListeners.forEach { it.activityStarted() }
-  }
+	override fun onStart() {
+		super.onStart()
+		lifecycleListeners.forEach { it.activityStarted() }
+	}
 
-  override fun onResume() {
-    super.onResume()
-    lifecycleListeners.forEach { it.activityResumed() }
-  }
+	override fun onResume() {
+		super.onResume()
+		lifecycleListeners.forEach { it.activityResumed() }
+	}
 
-  override fun onPause() {
-    lifecycleListeners.forEach { it.activityOnPause() }
-    super.onPause()
-  }
+	override fun onPause() {
+		lifecycleListeners.forEach { it.activityOnPause() }
+		super.onPause()
+	}
 
-  override fun onStop() {
-    lifecycleListeners.forEach { it.activityOnStop() }
-    super.onStop()
-  }
+	override fun onStop() {
+		lifecycleListeners.forEach { it.activityOnStop() }
+		super.onStop()
+	}
 
-  override fun onDestroy() {
-    lifecycleListeners.forEach { it.activityOnDestroy() }
-    lifecycleListeners.clear()
-    super.onDestroy()
-  }
+	override fun onDestroy() {
+		lifecycleListeners.forEach { it.activityOnDestroy() }
+		lifecycleListeners.clear()
+		super.onDestroy()
+	}
 }

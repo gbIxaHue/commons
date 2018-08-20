@@ -9,9 +9,9 @@ import android.widget.AutoCompleteTextView
  */
 class DebounceAutocompleteView: AutoCompleteTextView {
 
-  constructor (context: Context): super(context)
-  constructor (context: Context, attrs: AttributeSet): super(context, attrs)
-  constructor (context: Context, attrs: AttributeSet, defStyle: Int): super(context, attrs, defStyle)
+	constructor (context: Context): super(context)
+	constructor (context: Context, attrs: AttributeSet): super(context, attrs)
+	constructor (context: Context, attrs: AttributeSet, defStyle: Int): super(context, attrs, defStyle)
 //
 //  private val publishSubject: PublishSubject<CharSequence> = PublishSubject.create<CharSequence>()
 //  private var timeOut = 750L

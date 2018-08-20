@@ -11,25 +11,25 @@ import ru.dev.gbixahue.library.android.LayoutHolder
  */
 abstract class BaseListAdapter<V: View, D>(protected val itemList: MutableList<D> = mutableListOf()): BaseAdapter(), LayoutHolder {
 
-  fun setItemList(newItemList: MutableList<D>) {
-    itemList.clear()
-    newItemList.forEach { itemList.add(it) }
-  }
+	fun setItemList(newItemList: MutableList<D>) {
+		itemList.clear()
+		newItemList.forEach { itemList.add(it) }
+	}
 
-  override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-    var view = convertView
-    if (view == null) {
-      view = LayoutInflater.from(parent.context).inflate(getLayoutId(), parent, false)
-    }
-    bindView((view as V?) !!, itemList[position])
-    return view !!
-  }
+	override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+		var view = convertView
+		if (view == null) {
+			view = LayoutInflater.from(parent.context).inflate(getLayoutId(), parent, false)
+		}
+		bindView((view as V?) !!, itemList[position])
+		return view !!
+	}
 
-  abstract fun bindView(view: V, item: D)
+	abstract fun bindView(view: V, item: D)
 
-  override fun getItem(position: Int): D = itemList[position]
+	override fun getItem(position: Int): D = itemList[position]
 
-  override fun getItemId(position: Int): Long = position.toLong()
+	override fun getItemId(position: Int): Long = position.toLong()
 
-  override fun getCount(): Int = itemList.size
+	override fun getCount(): Int = itemList.size
 }

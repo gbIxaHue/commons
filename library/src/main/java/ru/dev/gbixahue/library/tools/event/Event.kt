@@ -5,7 +5,7 @@ package ru.dev.gbixahue.library.tools.event
  */
 class Event<D>(val type: EventType, val data: D?) {
 
-  override fun toString(): String {
-    return "type: " + type.name + "response: " + (data?.toString() ?: "")
-  }
+	override fun toString(): String {
+		return "type: " + type.name + "response: " + (data?.toString() ?: "")
+	}
 }

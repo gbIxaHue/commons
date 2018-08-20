@@ -14,42 +14,42 @@ import java.util.*
  */
 class FacebookAnalysis(application: Application, params: MutableMap<AnalysisKey, Any> = mutableMapOf()): BaseAnalysisSystem(application, params) {
 
-  companion object {
-    val ID = FacebookAnalysis::class.java.simpleName
-  }
+	companion object {
+		val ID = FacebookAnalysis::class.java.simpleName
+	}
 
-  private var tracker: AppEventsLogger? = null
+	private var tracker: AppEventsLogger? = null
 
-  override fun initSystem(application: Application) {
-    FacebookSdk.sdkInitialize(application)
-    tracker = AppEventsLogger.newLogger(application)
-    AppEventsLogger.activateApp(application)
-  }
+	override fun initSystem(application: Application) {
+		FacebookSdk.sdkInitialize(application)
+		tracker = AppEventsLogger.newLogger(application)
+		AppEventsLogger.activateApp(application)
+	}
 
-  override fun lowPriority(event: AnalysisEvent) {
-    handleEvent(getCategoryAction(event).plus(getLogValues(event)),
-        { tracker?.logEvent(getCategoryAction(event), toBundle(event.values())) })
-  }
+	override fun lowPriority(event: AnalysisEvent) {
+		handleEvent(getCategoryAction(event).plus(getLogValues(event)),
+				{ tracker?.logEvent(getCategoryAction(event), toBundle(event.values())) })
+	}
 
-  override fun highPriority(event: AnalysisEvent) {
-    when (event.action()) {
-      HightEvent.ADS_CLICKED.name -> viewedContent(event)
-      HightEvent.ORDER_SERVICE.name -> purchaseMethod(event)
-      else -> acquiredEvents(event)
-    }
-  }
+	override fun highPriority(event: AnalysisEvent) {
+		when (event.action()) {
+			HightEvent.ADS_CLICKED.name -> viewedContent(event)
+			HightEvent.ORDER_SERVICE.name -> purchaseMethod(event)
+			else -> acquiredEvents(event)
+		}
+	}
 
-  private fun purchaseMethod(event: AnalysisEvent) {
-    handleEvent(("Purchase"), { tracker?.logPurchase(BigDecimal(1), Currency.getInstance("USD")) })
-  }
+	private fun purchaseMethod(event: AnalysisEvent) {
+		handleEvent(("Purchase"), { tracker?.logPurchase(BigDecimal(1), Currency.getInstance("USD")) })
+	}
 
-  private fun viewedContent(event: AnalysisEvent) {
-    handleEvent(("Content viewed"), { tracker?.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT, 1.toDouble()) })
-  }
+	private fun viewedContent(event: AnalysisEvent) {
+		handleEvent(("Content viewed"), { tracker?.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT, 1.toDouble()) })
+	}
 
-  private fun acquiredEvents(event: AnalysisEvent) {
-    val catAction = getCategoryAction(event)
-    events.filter { it == catAction }
-        .map { handleEvent(catAction.plus(getLogValues(event)), { tracker?.logEvent(catAction, toBundle(event.values())) }) }
-  }
+	private fun acquiredEvents(event: AnalysisEvent) {
+		val catAction = getCategoryAction(event)
+		events.filter { it == catAction }
+				.map { handleEvent(catAction.plus(getLogValues(event)), { tracker?.logEvent(catAction, toBundle(event.values())) }) }
+	}
 }

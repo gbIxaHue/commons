@@ -35,7 +35,7 @@ abstract class RvBaseAdapter<D, VH: RvBaseViewHolder<D>>: RecyclerView.Adapter<V
 
 	open fun removeItem(item: D) {
 		val index = itemList.indexOf(item)
-		if (index != -1) {
+		if (index != - 1) {
 			itemList.removeAt(index)
 			notifyItemRemoved(index)
 		}

@@ -11,8 +11,8 @@ import ru.dev.gbixahue.library.tools.analysis.event.TrackerEvent
  */
 open class BaseAdsActivity: BaseAppActivity() {
 
-  protected fun initBottomAds(adsProperty: AdsProperty) {
-    if (! adsProperty.predicate.performExpression()) return
+	protected fun initBottomAds(adsProperty: AdsProperty) {
+		if (! adsProperty.predicate.performExpression()) return
 //    BottomAdsView.inject(adsProperty.injectLayout, adsProperty.resizeLayout, adsProperty.adId).apply {
 //      setOnAdClickListener {
 //        BottomAdsView.restoreParentView(this, adsProperty.resizeLayout)
@@ -21,9 +21,9 @@ open class BaseAdsActivity: BaseAppActivity() {
 //        destroy()
 //      }
 //    }
-  }
+	}
 
-  protected fun sendEventOfClickingByAds() {
-    ATrack.send(TrackerEvent("Ads event", HightEvent.ADS_CLICKED.name, EPriority.HIGH))
-  }
+	protected fun sendEventOfClickingByAds() {
+		ATrack.send(TrackerEvent("Ads event", HightEvent.ADS_CLICKED.name, EPriority.HIGH))
+	}
 }

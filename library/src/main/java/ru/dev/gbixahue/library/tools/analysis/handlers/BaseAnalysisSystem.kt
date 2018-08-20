@@ -16,71 +16,71 @@ import java.util.concurrent.locks.ReentrantLock
  */
 abstract class BaseAnalysisSystem(private val application: Application, private val params: MutableMap<AnalysisKey, Any>): AnalysisSystem {
 
-  var enableLog: Boolean = false
+	var enableLog: Boolean = false
 
-  protected open val events = mutableListOf<String>()
-  protected var isInit = AtomicBoolean(false)
+	protected open val events = mutableListOf<String>()
+	protected var isInit = AtomicBoolean(false)
 
-  private val stackOfEvents: Queue<AnalysisEvent> = LinkedList<AnalysisEvent>()
-  private val lock = ReentrantLock()
+	private val stackOfEvents: Queue<AnalysisEvent> = LinkedList<AnalysisEvent>()
+	private val lock = ReentrantLock()
 
-  override fun send(event: AnalysisEvent) {
-    if (! isInit.get()) {
-      initAndSend(event)
-      return
-    }
-    innerSend(event)
-  }
+	override fun send(event: AnalysisEvent) {
+		if (! isInit.get()) {
+			initAndSend(event)
+			return
+		}
+		innerSend(event)
+	}
 
-  private fun initAndSend(event: AnalysisEvent) {
-    stackOfEvents.offer(event)
-    lock.lock()
-    initSystem(application)
-    lock.unlock()
-    isInit.set(true)
-    stackOfEvents.forEach { innerSend(it) }
-  }
+	private fun initAndSend(event: AnalysisEvent) {
+		stackOfEvents.offer(event)
+		lock.lock()
+		initSystem(application)
+		lock.unlock()
+		isInit.set(true)
+		stackOfEvents.forEach { innerSend(it) }
+	}
 
-  private fun innerSend(event: AnalysisEvent) {
-    when (event.priority()) {
-      EPriority.LOW -> lowPriority(event)
-      EPriority.HIGH -> highPriority(event)
-    }
-  }
+	private fun innerSend(event: AnalysisEvent) {
+		when (event.priority()) {
+			EPriority.LOW -> lowPriority(event)
+			EPriority.HIGH -> highPriority(event)
+		}
+	}
 
-  protected abstract fun initSystem(application: Application)
+	protected abstract fun initSystem(application: Application)
 
-  override fun registerEvent(eventName: String) {
-    events.add(eventName)
-  }
+	override fun registerEvent(eventName: String) {
+		events.add(eventName)
+	}
 
-  protected open fun lowPriority(event: AnalysisEvent) {}
-  protected open fun highPriority(event: AnalysisEvent) {}
+	protected open fun lowPriority(event: AnalysisEvent) {}
+	protected open fun highPriority(event: AnalysisEvent) {}
 
-  protected open fun getCategoryAction(event: AnalysisEvent): String {
-    return event.getEventName { category, action ->
-      if (category.isEmpty()) action
-      else if (action.isEmpty()) category
-      else category + " / " + action
-    }
-  }
+	protected open fun getCategoryAction(event: AnalysisEvent): String {
+		return event.getEventName { category, action ->
+			if (category.isEmpty()) action
+			else if (action.isEmpty()) category
+			else category + " / " + action
+		}
+	}
 
-  open fun getLogValues(event: AnalysisEvent): String {
-    if (event.values() == null) return ""
-    return ", with values = ".plus(stringOf(event.values()))
-  }
+	open fun getLogValues(event: AnalysisEvent): String {
+		if (event.values() == null) return ""
+		return ", with values = ".plus(stringOf(event.values()))
+	}
 
-  open fun handleEvent(event: String, send: () -> Unit) {
-    if (enableLog) Log.d(this, event)
-    else send()
-  }
+	open fun handleEvent(event: String, send: () -> Unit) {
+		if (enableLog) Log.d(this, event)
+		else send()
+	}
 
-  protected fun toBundle(map: MutableMap<String, Any>?): Bundle? {
-    if (map == null) return null
-    val bundle = Bundle()
-    for ((key, value) in map) {
-      bundle.putString(key, stringOf(value))
-    }
-    return bundle
-  }
+	protected fun toBundle(map: MutableMap<String, Any>?): Bundle? {
+		if (map == null) return null
+		val bundle = Bundle()
+		for ((key, value) in map) {
+			bundle.putString(key, stringOf(value))
+		}
+		return bundle
+	}
 }

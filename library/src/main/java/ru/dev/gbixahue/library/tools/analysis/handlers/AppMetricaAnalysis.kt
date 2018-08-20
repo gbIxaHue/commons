@@ -13,31 +13,31 @@ import ru.dev.gbixahue.library.tools.analysis.event.AnalysisEvent
  */
 class AppMetricaAnalysis(application: Application, params: MutableMap<AnalysisKey, Any>): BaseAnalysisSystem(application, params) {
 
-  companion object {
-    val ID = AppMetricaAnalysis::class.java.simpleName
-  }
+	companion object {
+		val ID = AppMetricaAnalysis::class.java.simpleName
+	}
 
-  private val key: String by lazy { stringOf(params[AnalysisKey.APP_METRICA_API_KEY]) }
-  private var reporter: IReporter? = null
+	private val key: String by lazy { stringOf(params[AnalysisKey.APP_METRICA_API_KEY]) }
+	private var reporter: IReporter? = null
 
-  override fun initSystem(application: Application) {
-    val configBuilder = YandexMetricaConfig.newConfigBuilder(key)
-    YandexMetrica.activate(application, configBuilder.build())
-    YandexMetricaPush.init(application.applicationContext)
-    YandexMetrica.enableActivityAutoTracking(application)
-    reporter = YandexMetrica.getReporter(application, key)
-  }
+	override fun initSystem(application: Application) {
+		val configBuilder = YandexMetricaConfig.newConfigBuilder(key)
+		YandexMetrica.activate(application, configBuilder.build())
+		YandexMetricaPush.init(application.applicationContext)
+		YandexMetrica.enableActivityAutoTracking(application)
+		reporter = YandexMetrica.getReporter(application, key)
+	}
 
-  override fun lowPriority(event: AnalysisEvent) {
-    logEvent(event)
-  }
+	override fun lowPriority(event: AnalysisEvent) {
+		logEvent(event)
+	}
 
-  override fun highPriority(event: AnalysisEvent) {
-    logEvent(event)
-  }
+	override fun highPriority(event: AnalysisEvent) {
+		logEvent(event)
+	}
 
-  private fun logEvent(event: AnalysisEvent) {
-    val catAction = super.getCategoryAction(event)
-    handleEvent(catAction.plus(getLogValues(event)), { reporter?.reportEvent(catAction, event.values()) })
-  }
+	private fun logEvent(event: AnalysisEvent) {
+		val catAction = super.getCategoryAction(event)
+		handleEvent(catAction.plus(getLogValues(event)), { reporter?.reportEvent(catAction, event.values()) })
+	}
 }

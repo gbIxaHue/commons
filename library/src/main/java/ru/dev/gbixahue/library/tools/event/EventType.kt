@@ -5,5 +5,5 @@ package ru.dev.gbixahue.library.tools.event
  * How to use: create an enum class extending from this interface and use constants in order to distinguish different types of events
  */
 interface EventType {
-  val name: String
+	val name: String
 }

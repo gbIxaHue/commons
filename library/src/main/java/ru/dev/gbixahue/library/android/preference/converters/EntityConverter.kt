@@ -6,6 +6,6 @@ package ru.dev.gbixahue.library.android.preference.converters
 
 interface EntityConverter {
 
-  fun <T> toString(entity: T): String
-  fun <T> fromString(string: String, clazz: Class<T>): T
+	fun <T> toString(entity: T): String
+	fun <T> fromString(string: String, clazz: Class<T>): T
 }

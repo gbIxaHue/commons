@@ -7,7 +7,7 @@ import java.net.URL
  */
 open class NetworkConfig(protocol: String, host: String, version: String) {
 
-  private val SLASH = "/"
+	private val SLASH = "/"
 
-  val url = URL(protocol, host, if (version.isNotEmpty()) version.plus(SLASH) else version)
+	val url = URL(protocol, host, if (version.isNotEmpty()) version.plus(SLASH) else version)
 }
