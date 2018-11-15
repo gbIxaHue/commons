@@ -7,7 +7,7 @@ ext.versions = [
     targetSdk         : 28,
 
     versionCode       : 1,
-    versionName       : '0.2.2',
+    versionName       : '0.2.3',
 
     buildTools        : '28.0.3',
     support           : '28.0.0',
@@ -17,18 +17,17 @@ ext.versions = [
 
     firebase_core     : '16.0.5',
     firebase_messaging: '17.3.4',
-    firebase_ads      : '17.1.1',
 
-    mobmetricalib     : '3.0.0',
+    mobmetricalib     : '3.4.0',
     mobmetricapushlib : '1.1.0',
 
-    facebook          : '4.35.0',
+    facebook          : '4.38.1',
     stetho            : '1.5.0',
 
     crashlytics       : '2.9.3',
 
     rxjava            : '2.1.13',
-    rxandroid         : '2.0.2',
+    rxandroid         : '2.1.0',
     gson              : '2.8.5'
 ]
 
@@ -70,7 +69,6 @@ dependencies {
   // Firebase
   implementation "com.google.firebase:firebase-core:$versions.firebase_core"
   implementation "com.google.firebase:firebase-messaging:$versions.firebase_messaging"
-  implementation "com.google.firebase:firebase-ads:$versions.firebase_ads"
 
   // Yandex Metrica
   api "com.yandex.android:mobmetricalib:$versions.mobmetricalib"
