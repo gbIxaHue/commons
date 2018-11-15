@@ -1,8 +1,8 @@
 package ru.dev.gbixahue.library.arch.routing.cicerone.android
 
-import android.app.Fragment
-import android.app.FragmentManager
-import android.app.FragmentTransaction
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
 import ru.dev.gbixahue.library.arch.routing.Screen
 import ru.dev.gbixahue.library.arch.routing.cicerone.Navigator
 import ru.dev.gbixahue.library.arch.routing.cicerone.commands.*
@@ -40,9 +40,12 @@ abstract class FragmentNavigator
 	 * @param nextFragment next screen fragment
 	 * @param fragmentTransaction fragment transaction
 	 */
-	protected fun setupFragmentTransactionAnimation(command: Command, currentFragment: Fragment?, nextFragment: Fragment,
-			fragmentTransaction: FragmentTransaction) {
-	}
+	protected fun setupFragmentTransactionAnimation(
+			command: Command,
+			currentFragment: Fragment?,
+			nextFragment: Fragment,
+			fragmentTransaction: FragmentTransaction
+	){}
 
 	override fun applyCommands(commands: MutableList<Command>) {
 		fragmentManager.executePendingTransactions()

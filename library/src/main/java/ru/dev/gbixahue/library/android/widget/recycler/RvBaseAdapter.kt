@@ -4,9 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ru.dev.gbixahue.library.android.widget.recycler.vh.RvBaseViewHolder
+import ru.dev.gbixahue.library.android.widget.recycler.vh.RvBaseVH
 
-abstract class RvBaseAdapter<D, VH: RvBaseViewHolder<D>>: RecyclerView.Adapter<VH>() {
+abstract class RvBaseAdapter<D, VH: RvBaseVH<D>>: RecyclerView.Adapter<VH>() {
 
 	protected var itemList: MutableList<D> = mutableListOf()
 

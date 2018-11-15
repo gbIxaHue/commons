@@ -3,7 +3,7 @@ package ru.dev.gbixahue.library.arch.mvp.view
 /**
  * Created by Anton Zhilenkov on 16.07.18.
  */
-interface CustomMvpView: MvpView {
+interface MvpCustomView: MvpView {
 
 	fun onViewCreated()
 	fun onStart()

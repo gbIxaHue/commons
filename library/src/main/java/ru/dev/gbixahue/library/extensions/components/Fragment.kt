@@ -2,23 +2,10 @@ package ru.dev.gbixahue.library.extensions.components
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.widget.Toast
 import java.io.Serializable
 
 /**
  * Created by Anton Zhilenkov on 12.09.17.
- */
-fun Fragment.showToast(messageResId: Int) {
-	showToast(resources.getString(messageResId))
-}
-
-fun Fragment.showToast(message: String) {
-	Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
-}
-
-
-/**
- * Creation helpers
  */
 fun Fragment.putString(key: String, value: Any?): Fragment {
 	(value as? String)?.let { arguments = Bundle().apply { this.putString(key, value) } }

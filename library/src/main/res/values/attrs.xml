@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<declare-styleable name="LoadingLayout">
+		<attr name="errorLayoutId" format="reference" />
+		<attr name="errorRepeatBtnId" format="integer" />
+		<attr name="progressLayoutId" format="reference" />
+		<attr name="defaultState" format="enum">
+			<enum name="done" value="0" />
+			<enum name="loading" value="1" />
+			<enum name="error" value="2" />
+			<enum name="none" value="3" />
+		</attr>
+	</declare-styleable>
+
+</resources>

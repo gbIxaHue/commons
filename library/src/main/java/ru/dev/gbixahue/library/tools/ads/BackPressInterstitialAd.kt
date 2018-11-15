@@ -2,7 +2,6 @@ package ru.dev.gbixahue.library.tools.ads
 
 import android.content.Context
 import ru.dev.gbixahue.library.arch.OnBackPressHandler
-import ru.dev.gbixahue.library.hidden_singleton.handler.postWork
 import java.lang.ref.WeakReference
 
 /**
@@ -16,7 +15,7 @@ class BackPressInterstitialAd(private val wContext: WeakReference<Context>, priv
 	fun init(listener: (() -> Unit)? = null) {
 		onAdClickListener = listener
 		wContext.get()?.let {
-			postWork({
+//			postWork({
 				//        inAd = InterstitialAd(it).apply {
 //          adUnitId = it.stringFrom(adId)
 //          if (it is AppCompatActivity) {
@@ -28,7 +27,7 @@ class BackPressInterstitialAd(private val wContext: WeakReference<Context>, priv
 //            onAdClickListener?.invoke()
 //          }
 //        }
-			})
+//			})
 		}
 
 	}

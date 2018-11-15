@@ -32,7 +32,8 @@ fun releaseDateFormatters() {
 }
 
 fun convertDateToTimeWithGMToffset(stringDate: String, patternOfDate: String, offset: Long = getGMToffset(), locale: Locale? = null): Long {
-	val dateFormat = getFormatter(patternOfDate, locale).get()
+	val dateFormat = getFormatter(patternOfDate, locale).get() ?: return -1
+
 	val calendar = Calendar.getInstance()
 	return try {
 		calendar.timeInMillis = dateFormat.parse(stringDate).time + offset
@@ -47,7 +48,7 @@ fun convertDateToTimeWithGMToffset(stringDate: String, patternOfDate: String, of
 
 fun convertDateBetweenPatterns(date: String, patternOfDate: String, toPattern: String, default: String = date, locale: Locale? = null): String {
 	return try {
-		getFormatter(toPattern, locale).get().format(getFormatter(patternOfDate, locale).get().parse(date))
+		getFormatter(toPattern, locale).get()?.format(getFormatter(patternOfDate, locale).get()?.parse(date)) ?: default
 	} catch (e: Exception) {
 		Log.e(tag, e)
 		return default
@@ -55,12 +56,12 @@ fun convertDateBetweenPatterns(date: String, patternOfDate: String, toPattern: S
 }
 
 fun convertTimeToDate(time: Long, pattern: String, locale: Locale? = null): String {
-	return getFormatter(pattern, locale).get().format(time)
+	return getFormatter(pattern, locale).get()?.format(time) ?: ""
 }
 
-fun convertDateToTime(stringDate: String, patternOfDate: String, default: Long = - 1, locale: Locale? = null): Long {
+fun convertDateToTime(stringDate: String, patternOfDate: String, default: Long = -1, locale: Locale? = null): Long {
 	return try {
-		getFormatter(patternOfDate, locale).get().parse(stringDate).time
+		getFormatter(patternOfDate, locale).get()?.parse(stringDate)?.time ?: default
 	} catch (e: Exception) {
 		Log.e(tag, e)
 		default
@@ -69,7 +70,7 @@ fun convertDateToTime(stringDate: String, patternOfDate: String, default: Long =
 
 fun resetToUTC(time: Long): Long {
 	val tz = TimeZone.getTimeZone("UTC")
-	val format = SimpleDateFormat()
+	val format = SimpleDateFormat.getInstance()
 	format.timeZone = tz
 	try {
 		return format.parse(format.format(Date(time))).time
@@ -97,14 +98,3 @@ fun getTimeDiff(type: Int, fromTime: Long, toTime: Long = System.currentTimeMill
 	calendarTo.timeInMillis = toTime
 	return calendarTo.get(type) - calendarFrom.get(type)
 }
-
-
-
-
-
-
-
-
-
-
-

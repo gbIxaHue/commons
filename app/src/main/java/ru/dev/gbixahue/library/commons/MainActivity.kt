@@ -5,7 +5,6 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
-import ru.dev.gbixahue.library.commons.input_widget.InputWidget
 
 class MainActivity: AppCompatActivity() {
 
@@ -21,8 +20,6 @@ class MainActivity: AppCompatActivity() {
 	}
 
 	fun onClick(view: View) {
-		val view = findViewById<InputWidget>(R.id.iw1)
-		view.isErrorEnabled = !view.isErrorEnabled
 	}
 
 }

@@ -13,17 +13,17 @@ abstract class BaseDelegate: CreatorDelegate {
 
 	private val handlers: MutableList<CreatorDelegate.Handler> = mutableListOf()
 
-	override fun createActivityIntent(context: Context, screen: Screen, data: Any?): Intent? {
-		Log.d(this, screen)
-		val intent = delegateCreateActivityIntent(context, screen, data)
-		if (intent != null) handlers.forEach { it.onActivityChanged(screen) }
+	override fun createActivityIntent(context: Context, screenKey: Screen, data: Any?): Intent? {
+		Log.d(this, screenKey)
+		val intent = delegateCreateActivityIntent(context, screenKey, data)
+		if (intent != null) handlers.forEach { it.onActivityChanged(screenKey) }
 		return intent
 	}
 
-	override fun createFragment(screen: Screen, data: Any?): Fragment? {
-		Log.d(this, screen)
-		val fragment = delegateCreateFragment(screen, data)
-		if (fragment != null) handlers.forEach { it.onScreenChanged(screen) }
+	override fun createFragment(screenKey: Screen, data: Any?): Fragment? {
+		Log.d(this, screenKey)
+		val fragment = delegateCreateFragment(screenKey, data)
+		if (fragment != null) handlers.forEach { it.onScreenChanged(screenKey) }
 		return fragment
 	}
 

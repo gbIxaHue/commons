@@ -6,7 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import ru.dev.gbixahue.library.R
 import ru.dev.gbixahue.library.android.log.Log
-import ru.dev.gbixahue.library.extensions.components.showToast
+import ru.dev.gbixahue.library.extensions.components.toast
 
 /**
  * Created by Anton Zhilenkov on 06.03.2018.
@@ -30,7 +30,7 @@ class MailTo(private val appName: String, private val mailTo: String, private va
 		try {
 			context.startActivity(intent)
 		} catch (ex: ActivityNotFoundException) {
-			context.showToast(R.string.e_not_found_activity_email)
+			context.toast(R.string.c_error_not_found_activity_email)
 		}
 	}
 }

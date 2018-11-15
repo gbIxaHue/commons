@@ -16,6 +16,7 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.Toast
 import ru.dev.gbixahue.library.android.log.Log
+import ru.dev.gbixahue.library.hidden_singleton.handler.postUI
 import java.lang.ref.WeakReference
 
 /**
@@ -28,13 +29,13 @@ fun Context.drawableFrom(@DrawableRes drawableId: Int) = AppCompatResources.getD
 fun Context.stringFrom(@StringRes stringId: Int) = resources.getString(stringId)
 fun Context.dimenFrom(@DimenRes dimenId: Int) = resources.getDimension(dimenId)
 
-fun Context.showToast(messageResId: Int) {
+fun Context.toast(messageResId: Int, length: Int = Toast.LENGTH_SHORT) {
 	if (messageResId < 0) return
-	showToast(stringFrom(messageResId))
+	toast(stringFrom(messageResId), length)
 }
 
-fun Context.showToast(message: String) {
-	Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+fun Context.toast(message: String, length: Int = Toast.LENGTH_SHORT) {
+	Toast.makeText(this, message, length).show()
 }
 
 fun Context.dpToPx(dp: Float): Float = dp * resources.displayMetrics.density
@@ -61,20 +62,33 @@ fun Context.displayHeightInPx(): Float {
 	return point.y.toFloat()
 }
 
-fun Context.openWebView(url: String) {
-	try {
-		val myIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply { addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) }
-		applicationContext.startActivity(myIntent)
-	} catch (e: ActivityNotFoundException) {
-		e.printStackTrace()
-		showToast(e.localizedMessage)
+fun Context.safeStartActivity(intent: Intent, failureCallback: (() -> Unit)? = null) {
+	if (intent.resolveActivity(packageManager) != null) {
+		postUI {
+			ContextCompat.startActivity(this, intent, null)
+		}
+	} else {
+		failureCallback?.invoke()
 	}
 }
 
-fun Context.isTablet(): Boolean = (resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) >=
-		Configuration.SCREENLAYOUT_SIZE_LARGE
+fun Context.showInPlayMarket(appId: String, failureCallback: (() -> Unit)? = null) {
+	val marketPage = Uri.parse("market://details?id=$appId")
+	val intent = Intent(Intent.ACTION_VIEW, marketPage)
+	intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+	safeStartActivity(intent, failureCallback)
+}
 
-fun Context.isLandscape(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+fun Context.openWebView(url: String) {
+	try {
+		val myIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply { addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) }
+		applicationContext.safeStartActivity(myIntent)
+	} catch (e: ActivityNotFoundException) {
+		e.printStackTrace()
+		toast(e.localizedMessage)
+	}
+}
+
 fun Context.isPortrait(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 fun Context.getOrientation(): Int = resources.configuration.orientation
 fun isPortrait(orientation: Int): Boolean = orientation == Configuration.ORIENTATION_PORTRAIT
@@ -102,3 +116,8 @@ fun <D> Context.packageInfo(defValue: D, infoGetter: (PackageInfo) -> D): D {
 		defValue
 	}
 }
+
+fun Context.isTablet(): Boolean = (resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) >=
+		Configuration.SCREENLAYOUT_SIZE_LARGE
+
+fun Context.isLandscape(): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE

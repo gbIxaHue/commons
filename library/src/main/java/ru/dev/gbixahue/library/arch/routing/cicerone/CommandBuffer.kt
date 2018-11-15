@@ -14,7 +14,7 @@ internal class CommandBuffer: NavigatorHolder {
 	override fun setNavigator(navigator: Navigator) {
 		this.navigator = navigator
 		while (! pendingCommands.isEmpty()) {
-			if (navigator != null) {
+			if (this.navigator != null) {
 				executeCommands(pendingCommands.poll())
 			} else
 				break

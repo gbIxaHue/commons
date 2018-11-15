@@ -59,7 +59,6 @@ class LocaleLanguageSwitcher(private val context: Context, private val prefRepos
 	}
 
 	private fun updateResources(context: Context, language: String): Context {
-		var context = context
 		val locale = Locale(language)
 		Locale.setDefault(locale)
 
@@ -67,7 +66,7 @@ class LocaleLanguageSwitcher(private val context: Context, private val prefRepos
 		val config = Configuration(res.configuration)
 		if (Build.VERSION.SDK_INT >= 17) {
 			config.setLocale(locale)
-			context = context.createConfigurationContext(config)
+			return context.createConfigurationContext(config)
 		} else {
 			config.locale = locale
 			res.updateConfiguration(config, res.displayMetrics)

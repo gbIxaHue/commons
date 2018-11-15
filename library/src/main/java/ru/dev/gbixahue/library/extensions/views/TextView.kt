@@ -1,15 +1,15 @@
 package ru.dev.gbixahue.library.extensions.views
 
-import android.animation.ValueAnimator
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Editable
 import android.text.Html
+import android.text.InputFilter
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
-import ru.dev.gbixahue.library.utils.InnerArbEvaluator
+import ru.dev.gbixahue.library.extensions.components.drawableFrom
 
 /**
  * Created by Anton Zhilenkov on 12.09.17.
@@ -20,18 +20,20 @@ fun TextView.capsAndUnderline() {
 }
 
 fun TextView.setTextFromHtml(htmlString: String) {
-	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) setText(Html.fromHtml(htmlString)) else setText(Html.fromHtml(htmlString, 0))
+	text = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) Html.fromHtml(htmlString) else Html.fromHtml(htmlString, 0)
+}
+
+fun TextView.markInvalid(invalid: Boolean, drawableId: Int) {
+	setRightDrawable(if (invalid) this.context.drawableFrom(drawableId) else null)
 }
 
 fun TextView.setRightDrawable(drawable: Drawable?) {
-	setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
-}
-
-fun TextView.animateColorChanges(to: Int, from: Int, duration: Long = 300) {
-	ValueAnimator.ofObject(InnerArbEvaluator(), from, to).apply {
-		setDuration(duration)
-		addUpdateListener { setTextColor(it.animatedValue as Int) }
-	}.start()
+	if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {
+		setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+	} else {
+		drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+		setCompoundDrawablesRelative(null, null, drawable, null)
+	}
 }
 
 fun EditText.text() = text.toString().trim()
@@ -47,6 +49,13 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit): TextWatcher {
 	}
 	this.addTextChangedListener(watcher)
 	return watcher
+}
+
+fun EditText.addInputFilter(filter: InputFilter) {
+	val inputFilters = mutableListOf<InputFilter>()
+	filters.forEach { inputFilters.add(it) }
+	inputFilters.add(filter)
+	if (inputFilters.isNotEmpty()) filters = inputFilters.toTypedArray()
 }
 
 fun EditText.requestFocusAndMoveCursor(moveCursorToTheEndOfText: Boolean = true) {

@@ -14,7 +14,7 @@ class SingleChoiceDialog(private val context: Context, private val titleId: Int,
 	fun show(onItemSelected: (Int) -> Unit) {
 		val builder = getBuilder()
 		builder.setTitle(titleId)
-		builder.setItems(arrayOfChoice) { dialog, which -> onItemSelected(which) }
+		builder.setItems(arrayOfChoice) { _, which -> onItemSelected(which) }
 		builder.create().show()
 	}
 

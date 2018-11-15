@@ -12,6 +12,6 @@ class LaunchFactory {
 
 	fun execute() {
 		mainThreadPredictable.forEach { if (it.performExpression()) it.performAction() }
-		postWork({ workThreadPredictable.forEach { if (it.performExpression()) it.performAction() } })
+		postWork { workThreadPredictable.forEach { if (it.performExpression()) it.performAction() } }
 	}
 }

@@ -6,8 +6,8 @@
 
   <!--Colors-->
 
-  <color name="sdk_input">#333333</color>
-  <color name="sdk_input_highlight">#64b246</color>
-  <color name="sdk_input_hint">#A0333333</color>
-  <color name="sdk_input_error">#d5162f</color>
+  <color name="c_input">#333333</color>
+  <color name="c_input_highlight">#64b246</color>
+  <color name="c_input_hint">#A0333333</color>
+  <color name="c_input_error">#d5162f</color>
 </resources>

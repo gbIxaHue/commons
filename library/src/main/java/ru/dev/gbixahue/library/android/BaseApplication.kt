@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
 import ru.dev.gbixahue.library.android.locale.LocaleLanguageSwitcher
-import ru.dev.gbixahue.library.android.log.DefaultLogger
+import ru.dev.gbixahue.library.android.log.CLogger
 import ru.dev.gbixahue.library.android.preference.PreferenceRepository
 import ru.dev.gbixahue.library.android.preference.converters.GsonConverter
 import ru.dev.gbixahue.library.tools.predictable.LaunchFactory
@@ -43,7 +43,7 @@ abstract class BaseApplication: Application() {
 
 	private fun initLogger() {
 		Log.d("TAG", "initLogger")
-		if (isDebug()) ru.dev.gbixahue.library.android.log.Log.setLogger(DefaultLogger(getLogName()))
+		if (isDebug()) ru.dev.gbixahue.library.android.log.Log.setLogger(CLogger(getLogName()))
 	}
 
 	abstract fun isDebug(): Boolean

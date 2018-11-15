@@ -10,10 +10,14 @@ import android.os.Looper
 val uiHandler: Handler = Handler(Looper.getMainLooper())
 val workHandler: Handler = Handler(HandlerThread("Application worker thread").apply { start() }.looper)
 
-fun postUi(func: () -> Unit, delay: Long = 0L) {
-	uiHandler.postDelayed(func, delay)
+fun post(msTime: Long, func: () -> Unit) {
+	Handler().postDelayed({ func() }, msTime)
 }
 
-fun postWork(func: () -> Unit, delay: Long = 0L) {
-	workHandler.postDelayed(func, delay)
+fun postUI(msTime: Long = 0, func: () -> Unit) {
+	if (msTime > 0) uiHandler.postDelayed({ func() }, msTime) else uiHandler.post(func)
+}
+
+fun postWork(msTime: Long = 0, func: () -> Unit) {
+	if (msTime > 0) workHandler.postDelayed({ func() }, msTime) else workHandler.post(func)
 }

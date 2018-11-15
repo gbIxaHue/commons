@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="e_not_found_activity_email"></string>
-	<string name="share"></string>
+	<string name="c_share">Share</string>
+
+	<string name="c_error_not_found_activity_email">No one activity fond for email</string>
+	<string name="c_error_connection">Error when connecting with the server. Please try again later.</string>
+	<string name="c_error_empty_list">No results</string>
+
 </resources>

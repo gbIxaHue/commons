@@ -5,7 +5,7 @@ import com.google.gson.Gson
 /**
  * Created by Anton Zhilenkov on 06.03.2018.
  */
-class GsonConverter private constructor(): EntityConverter {
+open class GsonConverter private constructor(): EntityConverter {
 
 	val gson: Gson = init()
 

@@ -19,7 +19,7 @@ class ShareMe() {
 			sharingIntent.type = "text/plain"
 			sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "\n\n")
 			sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, message + " $linkToGoogleApp" + context.applicationInfo.packageName)
-			context.startActivity(Intent.createChooser(sharingIntent, context.stringFrom(R.string.share)))
+			context.startActivity(Intent.createChooser(sharingIntent, context.stringFrom(R.string.c_share)))
 		}
 	}
 }

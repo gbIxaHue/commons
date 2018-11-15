@@ -4,10 +4,8 @@ import android.animation.LayoutTransition
 import android.support.annotation.*
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import ru.dev.gbixahue.library.extensions.components.colorFrom
-import ru.dev.gbixahue.library.extensions.components.dimenFrom
-import ru.dev.gbixahue.library.extensions.components.drawableFrom
-import ru.dev.gbixahue.library.extensions.components.stringFrom
+import android.widget.Toast
+import ru.dev.gbixahue.library.extensions.components.*
 import java.lang.ref.WeakReference
 
 /**
@@ -19,6 +17,14 @@ fun ViewGroup.colorFrom(@ColorRes colorId: Int) = context.colorFrom(colorId)
 fun ViewGroup.drawableFrom(@DrawableRes drawableId: Int) = context.drawableFrom(drawableId)
 fun ViewGroup.stringFrom(@StringRes stringId: Int) = context.stringFrom(stringId)
 fun ViewGroup.dimenFrom(@DimenRes dimenId: Int) = context.dimenFrom(dimenId)
+
+fun ViewGroup.toast(message: String, length: Int = Toast.LENGTH_SHORT) {
+	context.toast(message, length)
+}
+
+fun ViewGroup.toast(messageId: Int, length: Int = Toast.LENGTH_SHORT) {
+	context.toast(messageId, length)
+}
 
 @Suppress("UNCHECKED_CAST")
 fun <T> ViewGroup.inflate(@LayoutRes resId: Int, attachToRoot: Boolean = false): T =

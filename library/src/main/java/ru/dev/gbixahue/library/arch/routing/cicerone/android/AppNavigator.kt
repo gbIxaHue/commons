@@ -1,10 +1,10 @@
 package ru.dev.gbixahue.library.arch.routing.cicerone.android
 
-import android.app.Activity
-import android.app.FragmentManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import ru.dev.gbixahue.library.arch.routing.Screen
 import ru.dev.gbixahue.library.arch.routing.cicerone.commands.Command
@@ -22,13 +22,13 @@ import ru.dev.gbixahue.library.arch.routing.cicerone.commands.Replace
  */
 abstract class AppNavigator: FragmentNavigator {
 
-	private var activity: Activity? = null
+	private var activity: AppCompatActivity? = null
 
-	constructor(activity: Activity, containerId: Int): super(activity.fragmentManager, containerId) {
+	constructor(activity: AppCompatActivity, containerId: Int): super(activity.supportFragmentManager, containerId) {
 		this.activity = activity
 	}
 
-	constructor(activity: Activity, fragmentManager: FragmentManager, containerId: Int): super(fragmentManager, containerId) {
+	constructor(activity: AppCompatActivity, fragmentManager: FragmentManager, containerId: Int): super(fragmentManager, containerId) {
 		this.activity = activity
 	}
 
