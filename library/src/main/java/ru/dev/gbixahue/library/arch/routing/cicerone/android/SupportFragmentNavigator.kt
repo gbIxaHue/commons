@@ -51,7 +51,7 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: FragmentM
 		localStackCopy = LinkedList()
 		val stackSize = fragmentManager.backStackEntryCount
 		for (i in 0 until stackSize) {
-			localStackCopy.add(fragmentManager.getBackStackEntryAt(i).name)
+			fragmentManager.getBackStackEntryAt(i).name?.let { localStackCopy.add(it) }
 		}
 	}
 
@@ -139,7 +139,7 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: FragmentM
 			val index = localStackCopy.indexOf(key)
 			val size = localStackCopy.size
 
-			if (index != - 1) {
+			if (index != -1) {
 				for (i in 1 until size - index) {
 					localStackCopy.pop()
 				}

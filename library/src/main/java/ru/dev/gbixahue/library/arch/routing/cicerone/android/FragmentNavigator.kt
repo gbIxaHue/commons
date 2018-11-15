@@ -45,7 +45,8 @@ abstract class FragmentNavigator
 			currentFragment: Fragment?,
 			nextFragment: Fragment,
 			fragmentTransaction: FragmentTransaction
-	){}
+	) {
+	}
 
 	override fun applyCommands(commands: MutableList<Command>) {
 		fragmentManager.executePendingTransactions()
@@ -62,7 +63,7 @@ abstract class FragmentNavigator
 
 		val stackSize = fragmentManager.backStackEntryCount
 		for (i in 0 until stackSize) {
-			localStackCopy.add(fragmentManager.getBackStackEntryAt(i).name)
+			fragmentManager.getBackStackEntryAt(i).name?.let { localStackCopy.add(it) }
 		}
 	}
 
@@ -158,7 +159,7 @@ abstract class FragmentNavigator
 			val index = localStackCopy.indexOf(key)
 			val size = localStackCopy.size
 
-			if (index != - 1) {
+			if (index != -1) {
 				for (i in 1 until size - index) {
 					localStackCopy.pop()
 				}
