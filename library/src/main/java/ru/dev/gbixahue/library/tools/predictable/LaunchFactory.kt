@@ -10,7 +10,7 @@ class LaunchFactory {
 	val mainThreadPredictable: MutableList<PredictableAction> = mutableListOf()
 	val workThreadPredictable: MutableList<PredictableAction> = mutableListOf()
 
-	fun execute() {
+	internal fun execute() {
 		mainThreadPredictable.forEach { if (it.performExpression()) it.performAction() }
 		postWork { workThreadPredictable.forEach { if (it.performExpression()) it.performAction() } }
 	}

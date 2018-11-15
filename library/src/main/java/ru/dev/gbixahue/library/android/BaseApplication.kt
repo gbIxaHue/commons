@@ -39,13 +39,18 @@ abstract class BaseApplication: Application() {
 		languageSwitcher.restoreUserChoice()
 	}
 
-	protected open fun initLaunchPerformer() {}
+	private fun initLaunchPerformer() {
+		configureLaunchFactory(launchFactory)
+		launchFactory.execute()
+	}
+
 
 	private fun initLogger() {
 		Log.d("TAG", "initLogger")
 		if (isDebug()) ru.dev.gbixahue.library.android.log.Log.setLogger(CLogger(getLogName()))
 	}
 
+	abstract fun configureLaunchFactory(launchFactory: LaunchFactory)
 	abstract fun isDebug(): Boolean
 	abstract fun getLogName(): String
 }

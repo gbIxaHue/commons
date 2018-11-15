@@ -5,6 +5,7 @@ import com.yandex.metrica.IReporter
 import com.yandex.metrica.YandexMetrica
 import com.yandex.metrica.YandexMetricaConfig
 import com.yandex.metrica.push.YandexMetricaPush
+import ru.dev.gbixahue.library.BuildConfig
 import ru.dev.gbixahue.library.extensions.stringOf
 import ru.dev.gbixahue.library.tools.analysis.event.AnalysisEvent
 
@@ -21,8 +22,10 @@ class AppMetricaAnalysis(application: Application, params: MutableMap<AnalysisKe
 	private var reporter: IReporter? = null
 
 	override fun initSystem(application: Application) {
-		val configBuilder = YandexMetricaConfig.newConfigBuilder(key)
-		YandexMetrica.activate(application, configBuilder.build())
+		val config = YandexMetricaConfig.newConfigBuilder(key).apply {
+			withAppVersion(BuildConfig.VERSION_NAME)
+		}
+		YandexMetrica.activate(application, config.build())
 		YandexMetricaPush.init(application.applicationContext)
 		YandexMetrica.enableActivityAutoTracking(application)
 		reporter = YandexMetrica.getReporter(application, key)
@@ -38,6 +41,6 @@ class AppMetricaAnalysis(application: Application, params: MutableMap<AnalysisKe
 
 	private fun logEvent(event: AnalysisEvent) {
 		val catAction = super.getCategoryAction(event)
-		handleEvent(catAction.plus(getLogValues(event)), { reporter?.reportEvent(catAction, event.values()) })
+		handleEvent(catAction.plus(getLogValues(event))) { reporter?.reportEvent(catAction, event.values()) }
 	}
 }
