@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.util.Log
 import ru.dev.gbixahue.library.android.locale.LocaleLanguageSwitcher
 import ru.dev.gbixahue.library.android.log.CLogger
+import ru.dev.gbixahue.library.android.log.profiling.CLogProfiler
 import ru.dev.gbixahue.library.android.preference.PreferenceRepository
 import ru.dev.gbixahue.library.android.preference.converters.GsonConverter
 import ru.dev.gbixahue.library.tools.predictable.LaunchFactory
@@ -47,7 +48,7 @@ abstract class BaseApplication: Application() {
 
 	private fun initLogger() {
 		Log.d("TAG", "initLogger")
-		if (isDebug()) ru.dev.gbixahue.library.android.log.Log.setLogger(CLogger(getLogName()))
+		if (isDebug()) ru.dev.gbixahue.library.android.log.Log.setLogger(CLogger(getLogName()).apply { setProfiler(CLogProfiler()) })
 	}
 
 	abstract fun configureLaunchFactory(launchFactory: LaunchFactory)
