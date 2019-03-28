@@ -9,7 +9,6 @@ import ru.dev.gbixahue.library.tools.analysis.event.AnalysisEvent
 import ru.dev.gbixahue.library.tools.analysis.event.EPriority
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.locks.ReentrantLock
 
 /**
  * Created by Anton Zhilenkov on 06.03.2018.
@@ -20,25 +19,24 @@ abstract class BaseAnalysisSystem(private val application: Application, private 
 
 	protected open val events = mutableListOf<String>()
 	protected var isInit = AtomicBoolean(false)
+	protected var initiationStarted = AtomicBoolean(false)
 
 	private val stackOfEvents: Queue<AnalysisEvent> = LinkedList<AnalysisEvent>()
-	private val lock = ReentrantLock()
 
 	override fun send(event: AnalysisEvent) {
 		if (! isInit.get()) {
-			initAndSend(event)
+			if (initiationStarted.get()) {
+				stackOfEvents.offer(event)
+				return
+			}
+			initiationStarted.set(true)
+			stackOfEvents.offer(event)
+			initSystem(application)
+			isInit.set(true)
+			stackOfEvents.forEach { innerSend(it) }
 			return
 		}
 		innerSend(event)
-	}
-
-	private fun initAndSend(event: AnalysisEvent) {
-		stackOfEvents.offer(event)
-		lock.lock()
-		initSystem(application)
-		lock.unlock()
-		isInit.set(true)
-		stackOfEvents.forEach { innerSend(it) }
 	}
 
 	private fun innerSend(event: AnalysisEvent) {
