@@ -4,6 +4,7 @@ package ru.dev.gbixahue.library.android.activity
  * Created by Anton Zhilenkov on 06.03.2018.
  */
 interface LifeCycleListener {
+	fun onCreate() {}
 	fun activityOnPause() {}
 	fun activityResumed() {}
 
