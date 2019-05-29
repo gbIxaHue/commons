@@ -3,7 +3,7 @@ package ru.dev.gbixahue.library.android.widget
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.support.v7.widget.AppCompatAutoCompleteTextView
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import android.util.AttributeSet
 
 /**

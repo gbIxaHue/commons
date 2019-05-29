@@ -1,13 +1,13 @@
 package ru.dev.gbixahue.library.arch.components.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.dev.gbixahue.library.android.LayoutHolder
 
-abstract class BaseFragment: Fragment(), LayoutHolder {
+abstract class BaseFragment: androidx.fragment.app.Fragment(), LayoutHolder {
 
 	companion object {
 		const val A_DATA = "arguments_data"

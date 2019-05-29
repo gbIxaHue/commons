@@ -1,8 +1,8 @@
 package ru.dev.gbixahue.library.arch.routing.cicerone.android
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import ru.dev.gbixahue.library.arch.routing.Screen
 import ru.dev.gbixahue.library.arch.routing.cicerone.Navigator
 import ru.dev.gbixahue.library.arch.routing.cicerone.commands.*
@@ -21,7 +21,7 @@ import java.util.*
  * @param fragmentManager support fragment manager
  * @param containerId id of the fragments container layout
  */
-abstract class SupportFragmentNavigator(protected val fragmentManager: FragmentManager, protected val containerId: Int): Navigator {
+abstract class SupportFragmentNavigator(protected val fragmentManager: androidx.fragment.app.FragmentManager, protected val containerId: Int): Navigator {
 
 	protected var localStackCopy: LinkedList<String> = LinkedList()
 
@@ -33,8 +33,9 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: FragmentM
 	 * @param nextFragment next screen fragment
 	 * @param fragmentTransaction fragment transaction
 	 */
-	protected open fun setupFragmentTransactionAnimation(command: Command, currentFragment: Fragment?, nextFragment: Fragment,
-			fragmentTransaction: FragmentTransaction) {
+	protected open fun setupFragmentTransactionAnimation(command: Command, currentFragment: androidx.fragment.app.Fragment?, nextFragment: androidx.fragment.app.Fragment,
+                                                         fragmentTransaction: androidx.fragment.app.FragmentTransaction
+    ) {
 	}
 
 	override fun applyCommands(commands: MutableList<Command>) {
@@ -151,7 +152,7 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: FragmentM
 	}
 
 	private fun backToRoot() {
-		fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+		fragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
 		localStackCopy.clear()
 	}
 
@@ -162,7 +163,7 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: FragmentM
 	 * @param data initialization data
 	 * @return instantiated fragment for the passed screen key
 	 */
-	protected abstract fun createFragment(screenKey: Screen, data: Any?): Fragment?
+	protected abstract fun createFragment(screenKey: Screen, data: Any?): androidx.fragment.app.Fragment?
 
 	/**
 	 * Shows system message.

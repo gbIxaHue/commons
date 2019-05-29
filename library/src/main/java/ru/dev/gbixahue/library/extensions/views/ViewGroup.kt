@@ -1,7 +1,7 @@
 package ru.dev.gbixahue.library.extensions.views
 
 import android.animation.LayoutTransition
-import android.support.annotation.*
+import androidx.annotation.*
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast

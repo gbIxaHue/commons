@@ -1,10 +1,10 @@
 package ru.dev.gbixahue.library.extensions.views
 
 import android.animation.ValueAnimator
-import android.support.annotation.ColorRes
-import android.support.annotation.DimenRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import android.view.View
 import android.widget.Toast
 import ru.dev.gbixahue.library.extensions.components.*

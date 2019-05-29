@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import android.widget.Toast
 import ru.dev.gbixahue.library.arch.routing.Screen
 import ru.dev.gbixahue.library.arch.routing.cicerone.commands.Command
@@ -25,11 +25,11 @@ abstract class SupportAppNavigator: SupportFragmentNavigator {
 
 	protected var activity: Activity
 
-	constructor(activity: FragmentActivity, containerId: Int): super(activity.supportFragmentManager, containerId) {
+	constructor(activity: androidx.fragment.app.FragmentActivity, containerId: Int): super(activity.supportFragmentManager, containerId) {
 		this.activity = activity
 	}
 
-	constructor(activity: FragmentActivity, fragmentManager: FragmentManager, containerId: Int): super(fragmentManager, containerId) {
+	constructor(activity: androidx.fragment.app.FragmentActivity, fragmentManager: androidx.fragment.app.FragmentManager, containerId: Int): super(fragmentManager, containerId) {
 		this.activity = activity
 	}
 

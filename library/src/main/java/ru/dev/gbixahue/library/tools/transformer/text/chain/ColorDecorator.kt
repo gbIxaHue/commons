@@ -1,6 +1,6 @@
 package ru.dev.gbixahue.library.tools.transformer.text.chain
 
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import android.text.style.ForegroundColorSpan
 
 /**

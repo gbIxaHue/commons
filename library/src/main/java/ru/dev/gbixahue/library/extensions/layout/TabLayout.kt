@@ -1,15 +1,15 @@
 package ru.dev.gbixahue.library.extensions.layout
 
-import android.support.design.widget.TabLayout
+import com.google.android.material.tabs.TabLayout
 
 /**
  * Created by Anton Zhilenkov on 24.10.18.
  */
 
 fun TabLayout.addChangeListener(
-		reselected: ((TabLayout.Tab) -> Unit)? = null,
-		unselected: ((TabLayout.Tab) -> Unit)? = null,
-		selected: ((TabLayout.Tab) -> Unit)? = null
+	reselected: ((TabLayout.Tab) -> Unit)? = null,
+	unselected: ((TabLayout.Tab) -> Unit)? = null,
+	selected: ((TabLayout.Tab) -> Unit)? = null
 ): TabLayout.OnTabSelectedListener {
 	val listener = object: TabLayout.OnTabSelectedListener {
 		override fun onTabReselected(tab: TabLayout.Tab) {

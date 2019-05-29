@@ -1,6 +1,6 @@
 package ru.dev.gbixahue.library.arch.components.toolbar
 
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import android.widget.TextView
 

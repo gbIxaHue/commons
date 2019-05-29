@@ -1,7 +1,6 @@
 package ru.dev.gbixahue.library.tools
 
 import android.app.Application
-import com.crashlytics.android.Crashlytics
 import ru.dev.gbixahue.library.android.log.LogHandler
 import ru.dev.gbixahue.library.tools.analysis.AnalysisHolder
 import ru.dev.gbixahue.library.tools.analysis.event.AnalysisEvent
@@ -10,7 +9,15 @@ import ru.dev.gbixahue.library.tools.analysis.handlers.BaseAnalysisSystem
 /**
  * Created by Anton Zhilenkov on 14.11.18.
  */
-class FabricLogger(application: Application): BaseAnalysisSystem(application, mutableMapOf()), LogHandler {
+
+interface CrashlyticsSender: LogHandler {
+	fun send(message: String)
+}
+
+class FabricLogger(
+		private val logger: CrashlyticsSender,
+		application: Application
+): BaseAnalysisSystem(application, mutableMapOf()), LogHandler {
 
 
 	override fun initSystem(application: Application) {}
@@ -20,11 +27,11 @@ class FabricLogger(application: Application): BaseAnalysisSystem(application, mu
 	}
 
 	override fun handleLog(logMessage: String) {
-		Crashlytics.log(logMessage)
+		logger.handleLog(logMessage)
 	}
 
 	override fun send(event: AnalysisEvent) {
-		Crashlytics.log(assemblyEvent(event))
+		logger.send(assemblyEvent(event))
 	}
 
 	private fun assemblyEvent(event: AnalysisEvent): String {

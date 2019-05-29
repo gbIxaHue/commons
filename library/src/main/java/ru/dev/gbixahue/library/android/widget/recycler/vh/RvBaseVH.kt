@@ -1,9 +1,9 @@
 package ru.dev.gbixahue.library.android.widget.recycler.vh
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 
-abstract class RvBaseVH<D>(itemView: View): RecyclerView.ViewHolder(itemView) {
+abstract class RvBaseVH<D>(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
 	abstract fun bind(item: D)
 

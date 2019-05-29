@@ -1,8 +1,8 @@
 package ru.dev.gbixahue.library.arch.routing.cicerone.android
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import ru.dev.gbixahue.library.arch.routing.Screen
 import ru.dev.gbixahue.library.arch.routing.cicerone.Navigator
 import ru.dev.gbixahue.library.arch.routing.cicerone.commands.*
@@ -28,7 +28,7 @@ abstract class FragmentNavigator
  * @param fragmentManager fragment manager
  * @param containerId id of the fragments container layout
  */
-(private val fragmentManager: FragmentManager, private val containerId: Int): Navigator {
+(private val fragmentManager: androidx.fragment.app.FragmentManager, private val containerId: Int): Navigator {
 
 	private var localStackCopy: LinkedList<String> = LinkedList()
 
@@ -41,10 +41,10 @@ abstract class FragmentNavigator
 	 * @param fragmentTransaction fragment transaction
 	 */
 	protected fun setupFragmentTransactionAnimation(
-			command: Command,
-			currentFragment: Fragment?,
-			nextFragment: Fragment,
-			fragmentTransaction: FragmentTransaction
+        command: Command,
+        currentFragment: androidx.fragment.app.Fragment?,
+        nextFragment: androidx.fragment.app.Fragment,
+        fragmentTransaction: androidx.fragment.app.FragmentTransaction
 	) {
 	}
 
@@ -171,7 +171,7 @@ abstract class FragmentNavigator
 	}
 
 	private fun backToRoot() {
-		fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+		fragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
 		localStackCopy.clear()
 	}
 
@@ -182,7 +182,7 @@ abstract class FragmentNavigator
 	 * @param data initialization data
 	 * @return instantiated fragment for the passed screen key
 	 */
-	protected abstract fun createFragment(screenKey: Screen, data: Any?): Fragment?
+	protected abstract fun createFragment(screenKey: Screen, data: Any?): androidx.fragment.app.Fragment?
 
 	/**
 	 * Shows system message.

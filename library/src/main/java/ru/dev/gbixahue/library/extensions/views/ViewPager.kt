@@ -1,18 +1,18 @@
 package ru.dev.gbixahue.library.extensions.views
 
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 
 /**
  * Created by Anton Zhilenkov on 24.10.18.
  */
 
-fun ViewPager.addChangeListeners(
+fun androidx.viewpager.widget.ViewPager.addChangeListeners(
 		stateChanged: ((Int) -> Unit)? = null,
 		scrolled: ((Int, Float, Int) -> Unit)? = null,
 		selected: ((Int) -> Unit)? = null
-): ViewPager.OnPageChangeListener {
+): androidx.viewpager.widget.ViewPager.OnPageChangeListener {
 
-	val listener = object: ViewPager.OnPageChangeListener {
+	val listener = object: androidx.viewpager.widget.ViewPager.OnPageChangeListener {
 		override fun onPageScrollStateChanged(state: Int) {
 			stateChanged?.invoke(state)
 		}

@@ -1,15 +1,15 @@
 package ru.dev.gbixahue.library.android.view.view_pager
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 
 /**
  * Created by Anton Zhilenkov on 23.05.17.
  */
 
-abstract class BaseViewPagerAdapter<D>(fm: FragmentManager, private val fragmentClass: Class<out Fragment>): FragmentStatePagerAdapter(fm) {
+abstract class BaseViewPagerAdapter<D>(fm: androidx.fragment.app.FragmentManager, private val fragmentClass: Class<out androidx.fragment.app.Fragment>): androidx.fragment.app.FragmentStatePagerAdapter(fm) {
 
 	protected var itemsData: MutableList<D> = mutableListOf()
 	protected var titles: MutableList<String> = mutableListOf()
@@ -23,7 +23,7 @@ abstract class BaseViewPagerAdapter<D>(fm: FragmentManager, private val fragment
 		this.titles = titles
 	}
 
-	override fun getItem(position: Int): Fragment? {
+	override fun getItem(position: Int): androidx.fragment.app.Fragment? {
 		try {
 			val fragmentItem = fragmentClass.newInstance()
 			if (itemsData.size > 0) {

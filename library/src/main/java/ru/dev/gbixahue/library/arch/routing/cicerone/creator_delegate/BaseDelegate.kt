@@ -2,7 +2,7 @@ package ru.dev.gbixahue.library.arch.routing.cicerone.creator_delegate
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import ru.dev.gbixahue.library.android.log.Log
 import ru.dev.gbixahue.library.arch.routing.Screen
 
@@ -20,7 +20,7 @@ abstract class BaseDelegate: CreatorDelegate {
 		return intent
 	}
 
-	override fun createFragment(screenKey: Screen, data: Any?): Fragment? {
+	override fun createFragment(screenKey: Screen, data: Any?): androidx.fragment.app.Fragment? {
 		Log.d(this, screenKey)
 		val fragment = delegateCreateFragment(screenKey, data)
 		if (fragment != null) handlers.forEach { it.onScreenChanged(screenKey) }
@@ -46,6 +46,6 @@ abstract class BaseDelegate: CreatorDelegate {
 	}
 
 	abstract fun delegateCreateActivityIntent(context: Context, screen: Screen, data: Any?): Intent?
-	abstract fun delegateCreateFragment(screen: Screen, data: Any?): Fragment?
+	abstract fun delegateCreateFragment(screen: Screen, data: Any?): androidx.fragment.app.Fragment?
 	abstract fun delegateExit()
 }

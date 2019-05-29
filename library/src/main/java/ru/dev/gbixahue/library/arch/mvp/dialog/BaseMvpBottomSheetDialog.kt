@@ -2,7 +2,7 @@ package ru.dev.gbixahue.library.arch.mvp.dialog
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.view.View
 import ru.dev.gbixahue.library.android.LayoutHolder
 import ru.dev.gbixahue.library.arch.OnBackPressHandler

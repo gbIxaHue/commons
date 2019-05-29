@@ -6,7 +6,7 @@ import android.content.pm.PackageManager.GET_META_DATA
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import ru.dev.gbixahue.library.android.preference.Key
 import ru.dev.gbixahue.library.android.preference.PreferenceRepository
 import java.util.*

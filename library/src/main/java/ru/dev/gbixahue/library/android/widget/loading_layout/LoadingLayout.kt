@@ -2,7 +2,7 @@ package ru.dev.gbixahue.library.android.widget.loading_layout
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.support.transition.TransitionManager
+import androidx.transition.TransitionManager
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
@@ -57,7 +57,7 @@ class LoadingLayout: FrameLayout {
 		val styleAttrs = context.theme.obtainStyledAttributes(attrs, R.styleable.LoadingLayout, 0, 0)
 		try {
 			associateErrorView(styleAttrs)
-			initialState = when (styleAttrs.getInt(R.styleable.LoadingLayout_defaultState, -1)) {
+			initialState = when (styleAttrs.getInt(R.styleable.LoadingLayout_defState, -1)) {
 				0 -> State.DONE
 				1 -> State.LOADING
 				2 -> State.ERROR

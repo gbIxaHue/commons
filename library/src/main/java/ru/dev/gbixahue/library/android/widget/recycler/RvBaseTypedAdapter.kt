@@ -1,10 +1,10 @@
 package ru.dev.gbixahue.library.android.widget.recycler
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import ru.dev.gbixahue.library.android.widget.recycler.vh.RvBaseTypedVH
 import ru.dev.gbixahue.library.arch.interfaces.TypedData
 
-abstract class RvBaseTypedAdapter<VH: RvBaseTypedVH<TypedData<Int>>>: RecyclerView.Adapter<VH>() {
+abstract class RvBaseTypedAdapter<VH: RvBaseTypedVH<TypedData<Int>>>: androidx.recyclerview.widget.RecyclerView.Adapter<VH>() {
 
 	protected var itemList = mutableListOf<TypedData<Int>>()
 

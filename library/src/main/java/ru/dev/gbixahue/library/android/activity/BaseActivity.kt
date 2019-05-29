@@ -2,7 +2,7 @@ package ru.dev.gbixahue.library.android.activity
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import ru.dev.gbixahue.library.android.BaseApplication
 import ru.dev.gbixahue.library.android.locale.LocaleLanguageSwitcher
 import ru.dev.gbixahue.library.tools.analysis.ATrack
