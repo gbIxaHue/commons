@@ -28,7 +28,7 @@ abstract class FragmentNavigator
  * @param fragmentManager fragment manager
  * @param containerId id of the fragments container layout
  */
-(private val fragmentManager: androidx.fragment.app.FragmentManager, private val containerId: Int): Navigator {
+(private val fragmentManager: FragmentManager, private val containerId: Int): Navigator {
 
 	private var localStackCopy: LinkedList<String> = LinkedList()
 
@@ -41,10 +41,10 @@ abstract class FragmentNavigator
 	 * @param fragmentTransaction fragment transaction
 	 */
 	protected fun setupFragmentTransactionAnimation(
-        command: Command,
-        currentFragment: androidx.fragment.app.Fragment?,
-        nextFragment: androidx.fragment.app.Fragment,
-        fragmentTransaction: androidx.fragment.app.FragmentTransaction
+			command: Command,
+			currentFragment: Fragment?,
+			nextFragment: Fragment,
+			fragmentTransaction: FragmentTransaction
 	) {
 	}
 
@@ -159,7 +159,7 @@ abstract class FragmentNavigator
 			val index = localStackCopy.indexOf(key)
 			val size = localStackCopy.size
 
-			if (index != -1) {
+			if (index != - 1) {
 				for (i in 1 until size - index) {
 					localStackCopy.pop()
 				}
@@ -171,7 +171,7 @@ abstract class FragmentNavigator
 	}
 
 	private fun backToRoot() {
-		fragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+		fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 		localStackCopy.clear()
 	}
 
@@ -182,7 +182,7 @@ abstract class FragmentNavigator
 	 * @param data initialization data
 	 * @return instantiated fragment for the passed screen key
 	 */
-	protected abstract fun createFragment(screenKey: Screen, data: Any?): androidx.fragment.app.Fragment?
+	protected abstract fun createFragment(screenKey: Screen, data: Any?): Fragment?
 
 	/**
 	 * Shows system message.

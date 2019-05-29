@@ -21,7 +21,7 @@ import java.util.*
  * @param fragmentManager support fragment manager
  * @param containerId id of the fragments container layout
  */
-abstract class SupportFragmentNavigator(protected val fragmentManager: androidx.fragment.app.FragmentManager, protected val containerId: Int): Navigator {
+abstract class SupportFragmentNavigator(protected val fragmentManager: FragmentManager, protected val containerId: Int): Navigator {
 
 	protected var localStackCopy: LinkedList<String> = LinkedList()
 
@@ -33,9 +33,9 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: androidx.
 	 * @param nextFragment next screen fragment
 	 * @param fragmentTransaction fragment transaction
 	 */
-	protected open fun setupFragmentTransactionAnimation(command: Command, currentFragment: androidx.fragment.app.Fragment?, nextFragment: androidx.fragment.app.Fragment,
-                                                         fragmentTransaction: androidx.fragment.app.FragmentTransaction
-    ) {
+	protected open fun setupFragmentTransactionAnimation(command: Command, currentFragment: Fragment?, nextFragment: Fragment,
+			fragmentTransaction: FragmentTransaction
+	) {
 	}
 
 	override fun applyCommands(commands: MutableList<Command>) {
@@ -140,7 +140,7 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: androidx.
 			val index = localStackCopy.indexOf(key)
 			val size = localStackCopy.size
 
-			if (index != -1) {
+			if (index != - 1) {
 				for (i in 1 until size - index) {
 					localStackCopy.pop()
 				}
@@ -152,7 +152,7 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: androidx.
 	}
 
 	private fun backToRoot() {
-		fragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+		fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 		localStackCopy.clear()
 	}
 
@@ -163,7 +163,7 @@ abstract class SupportFragmentNavigator(protected val fragmentManager: androidx.
 	 * @param data initialization data
 	 * @return instantiated fragment for the passed screen key
 	 */
-	protected abstract fun createFragment(screenKey: Screen, data: Any?): androidx.fragment.app.Fragment?
+	protected abstract fun createFragment(screenKey: Screen, data: Any?): Fragment?
 
 	/**
 	 * Shows system message.

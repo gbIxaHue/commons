@@ -20,7 +20,7 @@ abstract class BaseDelegate: CreatorDelegate {
 		return intent
 	}
 
-	override fun createFragment(screenKey: Screen, data: Any?): androidx.fragment.app.Fragment? {
+	override fun createFragment(screenKey: Screen, data: Any?): Fragment? {
 		Log.d(this, screenKey)
 		val fragment = delegateCreateFragment(screenKey, data)
 		if (fragment != null) handlers.forEach { it.onScreenChanged(screenKey) }
@@ -46,6 +46,6 @@ abstract class BaseDelegate: CreatorDelegate {
 	}
 
 	abstract fun delegateCreateActivityIntent(context: Context, screen: Screen, data: Any?): Intent?
-	abstract fun delegateCreateFragment(screen: Screen, data: Any?): androidx.fragment.app.Fragment?
+	abstract fun delegateCreateFragment(screen: Screen, data: Any?): Fragment?
 	abstract fun delegateExit()
 }

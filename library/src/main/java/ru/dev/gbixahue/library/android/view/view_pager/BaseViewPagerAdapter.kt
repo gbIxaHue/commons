@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
  * Created by Anton Zhilenkov on 23.05.17.
  */
 
-abstract class BaseViewPagerAdapter<D>(fm: androidx.fragment.app.FragmentManager, private val fragmentClass: Class<out androidx.fragment.app.Fragment>): androidx.fragment.app.FragmentStatePagerAdapter(fm) {
+abstract class BaseViewPagerAdapter<D>(fm: FragmentManager, private val fragmentClass: Class<out Fragment>): FragmentStatePagerAdapter(fm) {
 
 	protected var itemsData: MutableList<D> = mutableListOf()
 	protected var titles: MutableList<String> = mutableListOf()
@@ -23,7 +23,7 @@ abstract class BaseViewPagerAdapter<D>(fm: androidx.fragment.app.FragmentManager
 		this.titles = titles
 	}
 
-	override fun getItem(position: Int): androidx.fragment.app.Fragment? {
+	override fun getItem(position: Int): Fragment? {
 		try {
 			val fragmentItem = fragmentClass.newInstance()
 			if (itemsData.size > 0) {

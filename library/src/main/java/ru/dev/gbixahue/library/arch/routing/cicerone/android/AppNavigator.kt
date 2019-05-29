@@ -3,9 +3,9 @@ package ru.dev.gbixahue.library.arch.routing.cicerone.android
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import ru.dev.gbixahue.library.arch.routing.Screen
 import ru.dev.gbixahue.library.arch.routing.cicerone.commands.Command
 import ru.dev.gbixahue.library.arch.routing.cicerone.commands.Forward
@@ -28,7 +28,7 @@ abstract class AppNavigator: FragmentNavigator {
 		this.activity = activity
 	}
 
-	constructor(activity: AppCompatActivity, fragmentManager: androidx.fragment.app.FragmentManager, containerId: Int): super(fragmentManager, containerId) {
+	constructor(activity: AppCompatActivity, fragmentManager: FragmentManager, containerId: Int): super(fragmentManager, containerId) {
 		this.activity = activity
 	}
 

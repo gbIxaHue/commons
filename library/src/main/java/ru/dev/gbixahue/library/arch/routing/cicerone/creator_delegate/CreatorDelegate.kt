@@ -3,6 +3,7 @@ package ru.dev.gbixahue.library.arch.routing.cicerone.creator_delegate
 import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
+
 import ru.dev.gbixahue.library.arch.routing.Screen
 
 /**
@@ -10,7 +11,7 @@ import ru.dev.gbixahue.library.arch.routing.Screen
  */
 interface CreatorDelegate {
 	fun createActivityIntent(context: Context, screenKey: Screen, data: Any?): Intent?
-	fun createFragment(screenKey: Screen, data: Any?): androidx.fragment.app.Fragment?
+	fun createFragment(screenKey: Screen, data: Any?): Fragment?
 	fun exit()
 
 	fun addHandler(handler: Handler)
