@@ -23,21 +23,13 @@ abstract class BaseViewPagerAdapter<D>(fm: FragmentManager, private val fragment
 		this.titles = titles
 	}
 
-	override fun getItem(position: Int): Fragment? {
-		try {
+	override fun getItem(position: Int): Fragment {
 			val fragmentItem = fragmentClass.newInstance()
 			if (itemsData.size > 0) {
 				val bundle = getArguments(itemsData[position])
 				if (bundle != null) fragmentItem.arguments = bundle
 			}
 			return fragmentItem
-		} catch (e: InstantiationException) {
-			e.printStackTrace()
-		} catch (e: IllegalAccessException) {
-			e.printStackTrace()
-		}
-
-		return null
 	}
 
 	override fun getCount(): Int = itemsData.size

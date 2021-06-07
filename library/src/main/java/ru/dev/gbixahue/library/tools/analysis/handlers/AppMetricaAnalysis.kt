@@ -23,7 +23,7 @@ class AppMetricaAnalysis(application: Application, params: MutableMap<AnalysisKe
 
 	override fun initSystem(application: Application) {
 		val config = YandexMetricaConfig.newConfigBuilder(key).apply {
-			withAppVersion(BuildConfig.VERSION_NAME)
+//			withAppVersion(BuildConfig.VERSION_NAME)
 		}
 		YandexMetrica.activate(application, config.build())
 		YandexMetricaPush.init(application.applicationContext)

@@ -25,7 +25,7 @@ abstract class BaseMvpFragment: BaseFragment(), MvpView, RouterProvider, OnBackP
 	override fun getRootRouter(): Router? = (parentFragment as? RouterProvider)?.getRootRouter()
 	override fun getBaseRouter(): Router? = (parentFragment as? RouterProvider)?.getBaseRouter()
 
-	override fun onAttach(context: Context?) {
+	override fun onAttach(context: Context) {
 		super.onAttach(context)
 		initComponent()
 		presenter = getMvpPresenter()

@@ -63,10 +63,10 @@ object AppInfoHelper {
 	}
 
 	private fun getSimpleInfo(): String {
-		return BuildConfig.VERSION_NAME
+		return BuildConfig.BUILD_TYPE
 	}
 
 	private fun getExtendedInfo(context: Context): String {
-		return BuildConfig.VERSION_NAME
+		return BuildConfig.BUILD_TYPE
 	}
 }
